@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/senti-platform/senti-mqtt-client/issues"
   },
-  "homepage": "https://github.com/senti-platform/senti-mqtt-client#readme"
+  "homepage": "https://github.com/senti-platform/senti-mqtt-client#readme",
+  "dependencies": {
+    "mqtt": "^2.18.8"
+  }
 }
