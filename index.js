@@ -2,9 +2,9 @@ var mqtt = require('mqtt')
 var client = mqtt.connect('mqtt://hive.senti.cloud')
 
 client.on('connect', function () {
-	client.subscribe('presence', function (err) {
+	client.subscribe('sensor/test', function (err) {
 		if (!err) {
-			client.publish('presence', 'Hello mqtt')
+			client.publish('sensor/test', 'Hello MQTT from Pi')
 		}
 	})
 })
