@@ -1,0 +1,29 @@
+{
+  "name": "senti-mqtt-client",
+  "version": "1.0.0",
+  "description": "Senti.Cloud MQTT client for Senti-in-a-Box devices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senti-platform/senti-mqtt-client.git"
+  },
+  "keywords": [
+    "senti",
+    "senti.cloud",
+    "iot",
+    "smartcity",
+    "internet-of-things",
+    "mqtt",
+    "mqtt-client",
+    "senti-in-a-box"
+  ],
+  "author": "Christian Broberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/senti-platform/senti-mqtt-client/issues"
+  },
+  "homepage": "https://github.com/senti-platform/senti-mqtt-client#readme"
+}
