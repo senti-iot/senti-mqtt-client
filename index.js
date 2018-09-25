@@ -60,6 +60,14 @@ client.on('offline', function () {
 	console.log('We are offline')
 })
 
+client.on("error", function (error) {
+	console.log("ERROR: ", error);
+})
+
+client.on('reconnect', function () {
+	console.log("reconnect");
+})
+
 client.on('close', function () {
 	console.log('We are closing')
 	client.end()
