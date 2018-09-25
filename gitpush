@@ -1,0 +1,5 @@
+#!/bin/bash
+#chmod 700 gitpush.sh
+
+git push
+ssh cb@192.168.1.131 'git pull'
