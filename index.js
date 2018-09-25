@@ -1,3 +1,5 @@
+#!/usr/bin/env nodejs
+
 var exec = require('child_process').exec
 
 function updateClient() {

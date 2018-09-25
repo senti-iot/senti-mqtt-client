@@ -11,3 +11,12 @@
 ## Done:
 - On message = "now" on topic /sensor/update
 - NodeJS execute bash command
+
+### PM2 Process Manager
+
+PM2 Runtime is a Production Process Manager for Node.js applications with a built-in Load Balancer. It allows you to keep applications alive forever, to reload them without downtime and facilitate common Devops tasks.
+
+```sh
+npm install pm2 -g
+```
+
