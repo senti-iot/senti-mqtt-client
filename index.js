@@ -51,7 +51,7 @@ client.on('close', function () {
 })
 
 client.on('packetreceive', function (packet) {
-	console.log('Packet received from broker')
+	// console.log('Packet received from broker')
 })
 
 client.on('packetsend', function (packet) {
