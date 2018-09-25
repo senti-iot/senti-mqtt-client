@@ -6,17 +6,19 @@ clear
 echo Updating Senti-MQTT-Client
 
 cd ~/apps/senti-mqtt-client
-echo
+
 echo 
 echo Pulling latest updates from GitHub
 git pull
-echo
 echo 
+
 echo Installing upgrades
-npm install
 echo
+npm install
+
 echo
 echo Running senti-mqtt-client service
-node index.js
+echo
+nodemon index.js
 
 

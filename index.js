@@ -1,8 +1,11 @@
 var mqtt = require('mqtt')
 
+var _clientId = 'sentidevice_' + Math.random().toString(16).substr(2, 8)
+
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	keepalive: 6,
-	clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+    clientId: _clientId,
+    clean: true,
 	will: {
 		topic: 'sensor/status',
 		payload: 'offline',
@@ -14,13 +17,13 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 var counter = 0
 var packets = -3
 
-client.publish('sensor/status', 'online')
+client.publish('sensor/status', 'online', { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
 			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Raspberry Pi ' + 'Connection no.: ' + counter)
-			client.publish('sensor/status', 'online')
+			// client.publish('sensor/status', 'online')
 			counter++
 		}
 	})
@@ -59,7 +62,7 @@ client.on('packetreceive', function (packet) {
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-        console.log('Packet sent to broker', 'Connection no.:', counter, ' Ping no.:', packets)        
+        console.log('Packet sent to broker from', _clientId, 'Connection no.:', counter, ' Ping no.:', packets)        
 	}
 	
 	// console.log('Packet sent! ', packet)
