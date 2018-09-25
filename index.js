@@ -18,6 +18,7 @@ var counter = 0
 var packets = -3
 
 client.publish('sensor/status', 'online', { retain: true })
+client.publish('sensor/status/' + _clientId, 'online', { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
