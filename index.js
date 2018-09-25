@@ -81,6 +81,6 @@ client.on('close', function () {
 	console.log('Packet received: ', packet)
 }) */
 
-client.on('packetsend', function (packet) {
+/* client.on('packetsend', function (packet) {
 	console.log('Packet sent: ', packet)
-})
+}) */
