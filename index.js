@@ -39,8 +39,7 @@ client.on("error", function (error) {
 })
 
 client.on('reconnect', function () {
-	console.log("Reconnected")
-	counter--
+	console.log("Reconnected")	
 })
 
 client.on('disconnect', function () {
