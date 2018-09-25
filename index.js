@@ -14,6 +14,8 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 var counter = 0
 var packets = -3
 
+client.publish('sensor/status', 'online')
+
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
@@ -39,11 +41,11 @@ client.on("error", function (error) {
 })
 
 client.on('reconnect', function () {
-	console.log("Reconnected")	
+	console.log("Reconnected")
 })
 
 client.on('disconnect', function () {
-	console.log("Disconnected ...");
+	console.log("Disconnected ...")
 })
 
 client.on('close', function () {	
