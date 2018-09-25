@@ -12,7 +12,7 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 })
 
 var counter = 0
-var packets = 0
+var packets = -3
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
@@ -50,14 +50,14 @@ client.on('close', function () {
 	// console.log('We are closing')
 })
 
-/* client.on('packetreceive', function (packet) {
-	console.log('Packet received: ', packet)
-}) */
+client.on('packetreceive', function (packet) {
+	console.log('Packet received from broker')
+})
 
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-		console.log('Ping! ', 'Connection no.: ', counter, ' Ping no.: ', packets)
+        console.log('Packet sent to broker', 'Connection no.:', counter, ' Ping no.:', packets)        
 	}
 	
 	// console.log('Packet sent! ', packet)
