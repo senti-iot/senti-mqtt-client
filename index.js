@@ -1,7 +1,8 @@
 var exec = require('child_process').exec
 
 function updateClient() {
-	exec('bash ./updateclient.sh', function (error, stdout, stderr) {
+	console.log('Updating client ...')
+	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
 		}
@@ -43,8 +44,7 @@ client.on('connect', function () {
 
 client.on('message', function (topic, message) {
 	console.log(message.toString())	
-	if (message.toString() == 'now') {
-		console.log('Updating client ...')
+	if (message.toString() == 'now') {		
 		updateClient()
 	}
 })
