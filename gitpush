@@ -1,5 +1,6 @@
 #!/bin/bash
 #chmod 700 gitpush.sh
 
+clear
 git push
 ssh cb@192.168.1.131 'cd ~/apps/senti-mqtt-client && git pull && npm install'
