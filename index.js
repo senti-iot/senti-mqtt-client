@@ -1,4 +1,4 @@
-#!/usr/bin/env nodejs
+#!/usr/bin/env /usr/local/bin/node
 
 var exec = require('child_process').exec
 
