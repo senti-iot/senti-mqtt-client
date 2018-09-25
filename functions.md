@@ -1,6 +1,6 @@
 # Senti-MQTT-Client functions
 
-## Todo:
+## Todo (tasks):
 - WebHook on GitHub to publish "now"
 - API for webhook
 - On message = "reboot" on topic /sensor/update
@@ -11,6 +11,3 @@
 ## Done:
 - On message = "now" on topic /sensor/update
 - NodeJS execute bash command
-
-
-
