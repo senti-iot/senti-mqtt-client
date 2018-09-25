@@ -58,7 +58,7 @@ client.on('message', function (topic, message) {
 
 client.on('offline', function () {	
 	console.log('We are offline')
-	client.end()
+	// client.end()
 })
 
 client.on("error", function (error) {
