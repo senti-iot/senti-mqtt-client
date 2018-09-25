@@ -1,32 +1,5 @@
 var mqtt = require('mqtt')
 
-const options = {
-	host: 'mqtt://hive.senti.cloud',
-	port: '1883',
-	username: '',
-	password: '',
-	keepalive: 60,
-	clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-	will: {
-		topic: 'sensor/status',
-		payload: 'offline',
-		qos: 2,
-		retain: true
-	}
-}
-
-// var client = mqtt.connect('mqtt://hive.senti.cloud', { options })
-/* var client = mqtt.connect({
-	host: options.host,
-	port: options.port,
-	will: {
-		topic: 'sensor/status',
-		payload: 'offline',
-		qos: 1,
-		retain: true
-	} 
-}) */
-
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	keepalive: 6,
 	clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
@@ -38,20 +11,20 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	}
 })
 
-
-// var client = mqtt.connect({ host: settings.mqttHost, port: settings.mqttPort })
+var counter = 1
+var packets = 1
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
 			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Raspberry Pi')
 			client.publish('sensor/status', 'online')
+			counter++
 		}
 	})
 })
 
 client.on('message', function (topic, message) {
-	// message is Buffer
 	console.log(message.toString())
 	// client.end()
 })
@@ -66,7 +39,8 @@ client.on("error", function (error) {
 })
 
 client.on('reconnect', function () {
-	console.log("Reconnected");
+	console.log("Reconnected")
+	counter--
 })
 
 client.on('disconnect', function () {
@@ -82,6 +56,7 @@ client.on('close', function () {
 }) */
 
 client.on('packetsend', function (packet) {
-	console.log('Packet sent! ')
+	packets++
+	console.log('Ping! ', 'Connection no.: ', counter, ' Ping no.: ', packets)
 	// console.log('Packet sent! ', packet)
 })
