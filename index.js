@@ -66,21 +66,22 @@ client.on("error", function (error) {
 })
 
 client.on('reconnect', function () {
-	console.log("reconnect");
+	console.log("Reconnected");
 })
 
 client.on('disconnect', function () {
-	console.log("disconnected ...");
+	console.log("Disconnected ...");
 })
 
 client.on('close', function () {	
-	console.log('We are closing')
+	// console.log('We are closing')
 })
 
 /* client.on('packetreceive', function (packet) {
 	console.log('Packet received: ', packet)
 }) */
 
-/* client.on('packetsend', function (packet) {
-	console.log('Packet sent: ', packet)
-}) */
+client.on('packetsend', function (packet) {
+	console.log('Packet sent! ')
+	// console.log('Packet sent! ', packet)
+})
