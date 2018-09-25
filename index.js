@@ -1,3 +1,13 @@
+var exec = require('child_process').exec
+
+function updateClient() {
+	exec('bash ./updateclient.sh', function (error, stdout, stderr) {
+		if (error) {
+			console.log(error.code)
+		}
+	})
+}
+
 var mqtt = require('mqtt')
 
 var _clientId = 'sentidevice_' + Math.random().toString(16).substr(2, 8)
@@ -25,19 +35,22 @@ client.on('connect', function () {
 		if (!err) {
 			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Raspberry Pi ' + 'Connection no.: ' + counter)
 			// client.publish('sensor/status', 'online')
+			client.subscribe('sensor/update')
 			counter++
 		}
 	})
 })
 
 client.on('message', function (topic, message) {
-	console.log(message.toString())
-	// client.end()
+	console.log(message.toString())	
+	if (message.toString() == 'now') {
+		console.log('Updating client ...')
+		updateClient()
+	}
 })
 
 client.on('offline', function () {	
 	console.log('We are offline')
-	// client.end()
 })
 
 client.on("error", function (error) {
