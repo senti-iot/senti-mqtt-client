@@ -17,7 +17,7 @@ var packets = 0
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
-			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Raspberry Pi')
+			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Raspberry Pi ' + 'Connection no.: ' + counter)
 			client.publish('sensor/status', 'online')
 			counter++
 		}
