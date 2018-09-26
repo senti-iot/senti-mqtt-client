@@ -10,7 +10,6 @@ var mqtt = require('mqtt')
 
 var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
 
-
 function updateClient() {
 	console.log('Updating client ...')
 	client.publish('sensor/test', 'Client restarted with new software')
@@ -34,8 +33,6 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 		retain: false
 	}
 })
-
-
 
 client.publish('sensor/status', 'online', { retain: true })
 client.publish('sensor/status/' + _clientId, 'online', { retain: true })
@@ -75,7 +72,7 @@ client.on('disconnect', function () {
 })
 
 client.on('close', function () {	
-	// console.log('We are closing')
+	console.log('We are closing')
 })
 
 client.on('packetreceive', function (packet) {
@@ -87,6 +84,5 @@ client.on('packetsend', function (packet) {
 	if (counter > 0) {
         console.log('Client:', _clientId, 'Connection:', counter, ' Ping:', packets)        
 	}
-	
 	// console.log('Packet sent! ', packet)
 })
