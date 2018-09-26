@@ -2,6 +2,8 @@
 
 var exec = require('child_process').exec
 
+const _keepalive = 5
+
 function updateClient() {
 	console.log('Updating client ...')
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
@@ -16,7 +18,7 @@ var mqtt = require('mqtt')
 var _clientId = 'sentidevice_' + Math.random().toString(16).substr(2, 8)
 
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
-	keepalive: 5,
+	keepalive: _keepalive,
     clientId: _clientId,
     clean: true,
 	will: {
@@ -37,7 +39,7 @@ client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
 			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Senti-in-a-Box ' + 'Connection no.: ' + counter)
-			client.publish('sensor/test', 'Keepalive = 5')
+			client.publish('sensor/test', 'Keep alive = ' + _keepalive)
 			client.subscribe('sensor/update')
 			counter++
 		}
