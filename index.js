@@ -15,7 +15,7 @@ function updateClient() {
 
 var mqtt = require('mqtt')
 
-var _clientId = 'sentidevice_' + Math.random().toString(16).substr(2, 8)
+var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
 
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	keepalive: _keepalive,
@@ -80,7 +80,7 @@ client.on('packetreceive', function (packet) {
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-        console.log('Packet sent to broker from', _clientId, 'Connection no.:', counter, ' Ping no.:', packets)        
+        console.log('Client:', _clientId, 'Connection:', counter, ' Ping:', packets)        
 	}
 	
 	// console.log('Packet sent! ', packet)
