@@ -3,19 +3,25 @@
 var exec = require('child_process').exec
 
 const _keepalive = 5
-
-function updateClient() {
-	console.log('Updating client ...')
-	exec('bash updateclient.sh', function (error, stdout, stderr) {
-		if (error) {
-			console.log(error.code)
-		}
-	})
-}
+var counter = 0
+var packets = -3
 
 var mqtt = require('mqtt')
 
 var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
+
+
+function updateClient() {
+	console.log('Updating client ...')
+	client.publish('sensor/test', 'Client restarted with new software')
+	exec('bash updateclient.sh', function (error, stdout, stderr) {		
+		if (error) {
+			console.log(error.code)
+		}
+		counter = 1
+		packets = -3
+	})
+}
 
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	keepalive: _keepalive,
@@ -29,8 +35,7 @@ var client = mqtt.connect('mqtt://hive.senti.cloud', {
 	}
 })
 
-var counter = 0
-var packets = -3
+
 
 client.publish('sensor/status', 'online', { retain: true })
 client.publish('sensor/status/' + _clientId, 'online', { retain: true })
