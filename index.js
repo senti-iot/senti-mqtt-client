@@ -16,7 +16,7 @@ var mqtt = require('mqtt')
 var _clientId = 'sentidevice_' + Math.random().toString(16).substr(2, 8)
 
 var client = mqtt.connect('mqtt://hive.senti.cloud', {
-	keepalive: 6,
+	keepalive: 5,
     clientId: _clientId,
     clean: true,
 	will: {

@@ -6,6 +6,7 @@
 - On message = "reboot" on topic /sensor/update
 - PM2 daemon 
 - Make options argument work and require from external file
+- Local configuration and device ID from local file
 - Switch statement to control message actions 
 - Slack channel for subscribe/publish
 - Push to Slack from client
