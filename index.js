@@ -43,7 +43,7 @@ client.publish('sensor/status/' + _clientId, 'online', { retain: true })
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
-			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Senti-in-a-Box ' + 'Connection no.: ' + counter)
+			client.publish('sensor/test', 'Hello from Senti-in-a-Box client ID: ' + _clientId)
 			client.publish('sensor/test', 'Keep alive = ' + _keepalive)
 			client.subscribe('sensor/update')
 			counter++
