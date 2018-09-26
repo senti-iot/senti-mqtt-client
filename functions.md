@@ -3,6 +3,7 @@
 ## Todo (tasks):
 - WebHook on GitHub to publish "now"
 - API for webhook
+- Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
 - On message = "reboot" on topic /sensor/update
 - PM2 daemon 
 - Make options argument work and require from external file
