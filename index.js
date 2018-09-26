@@ -17,8 +17,6 @@ function updateClient() {
 		if (error) {
 			console.log(error.code)
 		}
-		counter = 1
-		packets = -3
 	})
 }
 
