@@ -37,7 +37,7 @@ client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
 			client.publish('sensor/test', 'Hello Senti.Cloud from MQTT on Senti-in-a-Box ' + 'Connection no.: ' + counter)
-			// client.publish('sensor/status', 'online')
+			client.publish('sensor/test', 'Keepalive = 5')
 			client.subscribe('sensor/update')
 			counter++
 		}
