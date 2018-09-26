@@ -12,7 +12,7 @@ var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
 
 function updateClient() {
 	console.log('Updating client ...')
-	client.publish('sensor/test', 'Client restarted with new software')
+	client.publish('sensor/test', 'Client restarted')
 	exec('bash updateclient.sh', function (error, stdout, stderr) {		
 		if (error) {
 			console.log(error.code)
