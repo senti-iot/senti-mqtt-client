@@ -4,6 +4,10 @@ const log = require('./utils/log').log
 var moment = require('moment')
 moment.locale('da')
 
+const dateTimeLog = () => {
+	return moment().format('L - HH:mm:ss')
+}
+
 var exec = require('child_process').exec
 
 const _keepalive = 5
@@ -15,9 +19,9 @@ var mqtt = require('mqtt')
 var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
 
 function updateClient() {
-	console.log('Updating client ...')
+	console.log('Updating client ... ', dateTimeLog())
 	log()
-	client.publish('sensor/test', 'Client restarted')
+	client.publish('sensor/test', 'Client restarted ' + dateTimeLog())
 	exec('bash updateclient.sh', function (error, stdout, stderr) {		
 		if (error) {
 			console.log(error.code)
@@ -63,27 +67,27 @@ client.on('message', function (topic, message) {
 })
 
 client.on('offline', function () {	
-	console.log('We are offline')
+	console.log('We are offline', dateTimeLog())
 	log()
 })
 
 client.on("error", function (error) {
-	console.log("ERROR: ", error)
+	console.log("ERROR: ", error, dateTimeLog())
 	log()
 })
 
 client.on('reconnect', function () {
-	console.log("Reconnected")
+	console.log("Reconnected", dateTimeLog())
 	log()
 })
 
 client.on('disconnect', function () {
-	console.log("Disconnected ...")
+	console.log("Disconnected ...", dateTimeLog())
 	log()
 })
 
 client.on('close', function () {	
-	console.log('We are closing')
+	console.log('We are closing', dateTimeLog())
 	log()
 })
 
@@ -94,7 +98,7 @@ client.on('packetreceive', function (packet) {
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-		console.log('ID:', _clientId, '- Con:', counter, '- Ping:', packets, '-', moment().format('L - HH:mm:ss'))
+		console.log('ID:', _clientId, '- Con:', counter, '- Ping:', packets, '-', dateTimeLog())
 		// console.log(moment().format('LLLL'))
 		// console.log(moment().format('L - HH:mm:ss'))
 		// log('ID:', _clientId, '- Con:', counter, '- Ping:', packets, '-', moment().format('L - HH:mm:ss'))
