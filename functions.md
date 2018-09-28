@@ -18,5 +18,6 @@
 - NodeJS execute bash command
 - Remotely update the client from GitHub and restart
 - PM2 daemon 
+- Simple log, creating new log file every day
 
 
