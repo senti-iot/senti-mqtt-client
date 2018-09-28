@@ -9,20 +9,20 @@ echo Setting up Senti-MQTT-Client
 
 sudo mkdir -p /srv/nodejs/senti-mqtt-client/logs
 
-cd ~/apps/senti-mqtt-client
+cd /srv/nodejs/senti-mqtt-client/
 
 echo 
 echo Pulling latest updates from GitHub
 git pull
 echo 
 
-echo Installing upgrades
+echo Installing modules and/or upgrades
 echo
 npm install
 
 echo
-echo Running senti-mqtt-client service
+echo Starting senti-mqtt-client service ...
 echo
-nodemon index.js
+pm2 start ecosystem.config.js --env production
 
 
