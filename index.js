@@ -55,7 +55,7 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
 	console.log(message.toString())
 	log()
-	if (topic.toString() === 'sensor/status') {
+	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			updateClient()
 		}
