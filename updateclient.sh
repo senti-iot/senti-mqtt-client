@@ -8,8 +8,6 @@ echo Pulling latest updates from GitHub
 git pull
 echo 
 
-mkdir logs /dev/null
-
 echo Installing upgrades
 echo
 npm install
