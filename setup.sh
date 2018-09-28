@@ -14,13 +14,13 @@ sudo mkdir -p /srv/nodejs
 echo 
 echo Pulling latest updates from GitHub
 cd /srv/nodejs/
-git -C senti-mqtt-client pull || git clone https://github.com/senti-platform/senti-mqtt-client.git
+sudo git -C senti-mqtt-client pull || git clone https://github.com/senti-platform/senti-mqtt-client.git
 echo 
 
 echo Installing modules and/or upgrades
 echo
 cd /srv/nodejs/senti-mqtt-client/
-npm install
+sudo npm install
 
 sudo mkdir -p /srv/nodejs/senti-mqtt-client/logs
 echo
