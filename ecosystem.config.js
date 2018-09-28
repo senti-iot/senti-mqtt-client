@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'API',
+    name: 'senti-mqtt-client',
     script: 'index.js',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
@@ -8,7 +8,7 @@ module.exports = {
     instances: 1,
     autorestart: true,
 	watch: true,
-	ignore_watch: "logs/",
+	ignore_watch: "logs/*",
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development'
@@ -18,7 +18,7 @@ module.exports = {
     }
   }],
 
-  deploy : {
+/*   deploy : {
     production : {
       user : 'node',
       host : '212.83.163.1',
@@ -28,4 +28,5 @@ module.exports = {
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
-};
+ */}
+
