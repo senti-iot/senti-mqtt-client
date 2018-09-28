@@ -1,6 +1,6 @@
 #!/bin/bash
 #chmod 700 setup.sh
-# wget https://raw.githubusercontent.com/senti-platform/senti-mqtt-client/master/setup.sh
+# wget https://raw.githubusercontent.com/senti-platform/senti-mqtt-client/master/setup.sh && bash setup.sh
 
 # Log in and sudo -i
 
@@ -19,6 +19,7 @@ echo
 
 echo Installing modules and/or upgrades
 echo
+cd /srv/nodejs/senti-mqtt-client/
 npm install
 
 sudo mkdir -p /srv/nodejs/senti-mqtt-client/logs
