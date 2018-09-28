@@ -19,7 +19,7 @@ echo
 
 echo Installing modules and/or upgrades
 echo
-cd ./senti-mqtt-client
+cd senti-mqtt-client
 sudo npm install
 
 sudo mkdir -p /srv/nodejs/senti-mqtt-client/logs
