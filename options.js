@@ -1,15 +1,19 @@
+var os = require("os")
+var hostname = os.hostname()
+
 const options = {
 	host: 'mqtt://hive.senti.cloud',
 	port: '1883',
 	username: '',
 	password: '',
-	keepalive: 60,
-	clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+	keepalive: 5,
+	clientId: 'senti-' + hostname,
+	clean: true,
 	will: {
 		topic: 'sensor/status',
 		payload: 'offline',
-		qos: 2,
-		retain: true
+		qos: 1,
+		retain: false
 	}
 }
 
@@ -26,4 +30,8 @@ const options = {
 }) */
 
 // var client = mqtt.connect({ host: settings.mqttHost, port: settings.mqttPort })
+
+module.exports = {
+	options: options
+}
 

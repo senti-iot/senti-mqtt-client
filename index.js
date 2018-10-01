@@ -19,8 +19,10 @@ var counter = 0
 var packets = -3
 
 var mqtt = require('mqtt')
+const options = require('./options').options
 
-var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
+// var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
+var _clientId = options.clientId
 
 function updateClient() {
 	console.log('Updating client ... ', dateTimeLog())
