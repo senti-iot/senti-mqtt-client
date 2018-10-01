@@ -56,7 +56,7 @@ client.on('connect', function () {
 			client.publish('sensor/test', 'Keep alive = ' + _keepalive)
 			client.subscribe('sensor/update')
 			// postToSlack(channel, 'Hello from Senti-in-a-Box ID: ' + _clientId)
-			postToSlack(channel, `{"text":"Hello from Senti-in-a-Box ID: ${_clientId}"}`) 
+			postToSlack(channel, `{"text":"Hello from Senti-in-a-Box ID: ${_clientId}"}`)
 			counter++
 		}
 	})
@@ -68,6 +68,7 @@ client.on('message', function (topic, message) {
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			updateClient()
+			postToSlack(channel, `{"text":"Updating client ... ${dateTimeLog()}"}`)
 		}
 	}
 })
