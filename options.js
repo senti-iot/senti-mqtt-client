@@ -22,5 +22,3 @@ const options = {
 module.exports = {
 	options: options
 }
-
-// var clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
