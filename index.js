@@ -35,7 +35,6 @@ function updateClient() {
 var client = mqtt.connect(options.host, {
 	keepalive: options.keepalive,
 	clientId: options.clientId,
-    clean: options.clean,
 	will: options.will
 })
 
