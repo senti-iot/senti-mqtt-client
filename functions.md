@@ -6,7 +6,7 @@
 - Make MQTT connect options argument work and require from external file
 - Local configuration and device ID from local file
 - Switch statement to control message actions 
-- Slack channel for subscribe/publish
+- Slack channel for subscribe/publish (create new channel and Slack App)
 - Push to Slack from client
 - Get keepalive and topic info from API
 - Get username + password from API (SSL)
