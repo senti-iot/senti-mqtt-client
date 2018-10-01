@@ -28,3 +28,5 @@ yarn.lock*
 
 # logs
 *.log
+.node-*
+
