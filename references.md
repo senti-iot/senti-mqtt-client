@@ -12,3 +12,6 @@ https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-d
 https://blog.risingstack.com/getting-started-with-nodejs-and-mqtt/
 https://github.com/Losant/mqtt-garage-opener-example
 
+## Slack
+https://github.com/kyle-alex-burke/mqtt-slack-chat
+
