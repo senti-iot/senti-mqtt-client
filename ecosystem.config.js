@@ -1,3 +1,14 @@
+var isPi = require('detect-rpi')
+
+var instance = 1
+
+if (isPi()) {
+	instance = 1
+} else {
+	instance = 'max'
+}
+
+
 module.exports = {
   apps : [{
     name: 'senti-mqtt-client',
@@ -5,7 +16,7 @@ module.exports = {
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'one two',
-    instances: 'max',
+    instances: instance,
     autorestart: true,
 	watch: true,
 	ignore_watch: 'logs/*',
