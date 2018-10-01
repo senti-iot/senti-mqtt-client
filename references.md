@@ -15,3 +15,6 @@ https://github.com/Losant/mqtt-garage-opener-example
 ## Slack
 https://github.com/kyle-alex-burke/mqtt-slack-chat
 
+## PM2
+pm2 start ecosystem.config.js --env production
+

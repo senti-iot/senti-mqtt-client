@@ -28,6 +28,7 @@
   "homepage": "https://github.com/senti-platform/senti-mqtt-client#readme",
   "dependencies": {
     "moment": "^2.22.2",
-    "mqtt": "^2.18.8"
+    "mqtt": "^2.18.8",
+    "xmlhttprequest": "^1.8.0"
   }
 }

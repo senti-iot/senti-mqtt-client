@@ -5,6 +5,7 @@
 - On message = "reboot" on topic /sensor/update
 - Make MQTT connect options argument work and require from external file
 - Local configuration and device ID from local file
+- Communicate internally to own ID topics - e.g. 
 - Switch statement to control message actions 
 - Slack channel for subscribe/publish (create new channel and Slack App)
 - Push to Slack from client
