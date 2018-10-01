@@ -5,10 +5,10 @@ module.exports = {
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'one two',
-    instances: max,
+    instances: 'max',
     autorestart: true,
 	watch: true,
-	ignore_watch: "logs/*",
+	ignore_watch: 'logs/*',
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development'
