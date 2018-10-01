@@ -20,4 +20,7 @@
 - WebHook on GitHub to publish "now"
 - Slack channel for subscribe/publish (create new channel and Slack App)
 - Push to Slack from client
+- Added local hostname to clientId (temp)
+
+
 

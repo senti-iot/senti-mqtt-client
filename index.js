@@ -1,34 +1,30 @@
 #!/usr/bin/env /usr/local/bin/node
 
+const options = require('./options').options
 const log = require('./utils/log').log
-
 const postToSlack = require('./utils/slack').postMessageToSlack
-const channel = 'https://hooks.slack.com/services/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'
-
+var exec = require('child_process').exec
 var moment = require('moment')
-moment.locale('da')
+var mqtt = require('mqtt')
+
+const channel = options.slackChannel
+
+moment.locale(options.logLocale)
 
 const dateTimeLog = () => {
 	return moment().format('L - HH:mm:ss')
 }
 
-var exec = require('child_process').exec
-
-const _keepalive = 5
 var counter = 0
 var packets = -3
 
-var mqtt = require('mqtt')
-const options = require('./options').options
-
-// var _clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
-var _clientId = options.clientId
+var clientId = options.clientId
 
 function updateClient() {
-	console.log('Updating client ... ', dateTimeLog())
+	console.log('Updating client(s):', dateTimeLog())
 	log()
 	client.publish('sensor/test', 'Client restarted ' + dateTimeLog())
-	exec('bash updateclient.sh', function (error, stdout, stderr) {		
+	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
 			log()
@@ -36,29 +32,22 @@ function updateClient() {
 	})
 }
 
-var client = mqtt.connect('mqtt://hive.senti.cloud', {
-	keepalive: _keepalive,
-    clientId: _clientId,
-    clean: true,
-	will: {
-		topic: 'sensor/status',
-		payload: 'offline',
-		qos: 1,
-		retain: false
-	}
+var client = mqtt.connect(options.host, {
+	keepalive: options.keepalive,
+	clientId: options.clientId,
+    clean: options.clean,
+	will: options.will
 })
 
 client.publish('sensor/status', 'online', { retain: true })
-client.publish('sensor/status' + _clientId, 'online', { retain: true })
+client.publish('sensor/status' + clientId, 'online', { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
-			client.publish('sensor/test', 'Hello from Senti-in-a-Box ID: ' + _clientId)
-			client.publish('sensor/test', 'Keep alive = ' + _keepalive)
-			client.subscribe('sensor/update')
-			// postToSlack(channel, 'Hello from Senti-in-a-Box ID: ' + _clientId)
-			postToSlack(channel, `{"text":"Hello from Senti-in-a-Box ID: ${_clientId}"}`)
+			client.publish('sensor/test', clientId + ': connected')			
+			client.subscribe('sensor/update')			
+			postToSlack(channel, `{"text":"${clientId}: connected"}`)
 			counter++
 		}
 	})
@@ -107,10 +96,7 @@ client.on('packetreceive', function (packet) {
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-		console.log('ID:', _clientId, '- Con:', counter, '- Ping:', packets, '-', dateTimeLog())
-		// console.log(moment().format('LLLL'))
-		// console.log(moment().format('L - HH:mm:ss'))
-		// log('ID:', _clientId, '- Con:', counter, '- Ping:', packets, '-', moment().format('L - HH:mm:ss'))
+		console.log(clientId, '- connection:', counter, '- ping:', packets, '-', dateTimeLog())
 		log()
 	}
 })

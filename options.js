@@ -7,31 +7,20 @@ const options = {
 	username: '',
 	password: '',
 	keepalive: 5,
-	clientId: 'senti-' + hostname,
+	clientId: hostname,
 	clean: true,
 	will: {
 		topic: 'sensor/status',
 		payload: 'offline',
 		qos: 1,
 		retain: false
-	}
+	},
+	slackChannel: 'https://hooks.slack.com/services/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',
+	logLocale: 'da'
 }
-
-// var client = mqtt.connect('mqtt://hive.senti.cloud', { options })
-/* var client = mqtt.connect({
-	host: options.host,
-	port: options.port,
-	will: {
-		topic: 'sensor/status',
-		payload: 'offline',
-		qos: 1,
-		retain: true
-	} 
-}) */
-
-// var client = mqtt.connect({ host: settings.mqttHost, port: settings.mqttPort })
 
 module.exports = {
 	options: options
 }
 
+// var clientId = 'senti-' + Math.random().toString(16).substr(2, 8)
