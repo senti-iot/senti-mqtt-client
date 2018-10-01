@@ -21,7 +21,7 @@ var packets = -3
 var clientId = options.clientId
 
 function updateClient() {
-	console.log('Updating client(s):', dateTimeLog())
+	console.log('Updating client:' + clientId, dateTimeLog())
 	log()
 	client.publish('sensor/test', 'Client restarted ' + dateTimeLog())
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
@@ -58,7 +58,7 @@ client.on('message', function (topic, message) {
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			updateClient()
-			postToSlack(channel, `{"text":"Updating client(s): ${dateTimeLog()}"}`)
+			postToSlack(channel, `{"text":"Updating client: ${clientId} - ${dateTimeLog()}"}`)
 		}
 	}
 })
