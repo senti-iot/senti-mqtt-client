@@ -8,7 +8,6 @@ if (isPi()) {
 	instance = 'max'
 }
 
-
 module.exports = {
   apps : [{
     name: 'senti-mqtt-client',
