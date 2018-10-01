@@ -68,7 +68,7 @@ client.on('message', function (topic, message) {
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			updateClient()
-			postToSlack(channel, `{"text":"Updating client ... ${dateTimeLog()}"}`)
+			postToSlack(channel, `{"text":"Updating client(s): ${dateTimeLog()}"}`)
 		}
 	}
 })

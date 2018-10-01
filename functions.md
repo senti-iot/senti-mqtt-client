@@ -2,11 +2,11 @@
 
 ## Todo (tasks):
 - Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
+- Switch statement to control message actions 
 - On message = "reboot" on topic /sensor/update
 - Make MQTT connect options argument work and require from external file
 - Local configuration and device ID from local file
 - Communicate internally to own ID topics - e.g. 
-- Switch statement to control message actions 
 - Get keepalive and topic info from API
 - Get username + password from API (SSL)
 
