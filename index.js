@@ -1,6 +1,10 @@
 #!/usr/bin/env /usr/local/bin/node
 
 const log = require('./utils/log').log
+
+const postToSlack = require('./utils/slack').postMessageToSlack
+const channel = 'https://hooks.slack.com/services/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'
+
 var moment = require('moment')
 moment.locale('da')
 
@@ -51,6 +55,8 @@ client.on('connect', function () {
 			client.publish('sensor/test', 'Hello from Senti-in-a-Box ID: ' + _clientId)
 			client.publish('sensor/test', 'Keep alive = ' + _keepalive)
 			client.subscribe('sensor/update')
+			// postToSlack(channel, 'Hello from Senti-in-a-Box ID: ' + _clientId)
+			postToSlack(channel, `{"text":"Hello from Senti-in-a-Box ID: ${_clientId}"}`) 
 			counter++
 		}
 	})

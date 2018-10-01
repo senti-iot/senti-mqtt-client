@@ -2,7 +2,6 @@
 
 const channel = 'https://hooks.slack.com/services/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'
 
-
 function postMessageToSlack(url, message) {
 	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
 	var xmlhttp = new XMLHttpRequest()
@@ -14,5 +13,8 @@ function postMessageToSlack(url, message) {
 
 // console.log(channels['cb'].value, channels['cb'].message)
 
-postMessageToSlack(channel, '{"text":"Hello, World!"}')
+// postMessageToSlack(channel, '{"text":"Hello, World!"}')
 
+module.exports = {
+	postMessageToSlack: postMessageToSlack
+}

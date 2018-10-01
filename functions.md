@@ -7,8 +7,6 @@
 - Local configuration and device ID from local file
 - Communicate internally to own ID topics - e.g. 
 - Switch statement to control message actions 
-- Slack channel for subscribe/publish (create new channel and Slack App)
-- Push to Slack from client
 - Get keepalive and topic info from API
 - Get username + password from API (SSL)
 
@@ -20,4 +18,6 @@
 - Simple log, creating new log file every day
 - API for webhook
 - WebHook on GitHub to publish "now"
+- Slack channel for subscribe/publish (create new channel and Slack App)
+- Push to Slack from client
 
