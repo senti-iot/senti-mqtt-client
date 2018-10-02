@@ -57,7 +57,7 @@ client.on('message', function (topic, message) {
 	log()
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
-			client.publish('sensor/status', 'offline', { retain: false })
+			client.publish('sensor/status/' + clientId, 'offline', { retain: false })
 			updateClient()
 			postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
