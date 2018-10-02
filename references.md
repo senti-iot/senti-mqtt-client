@@ -16,5 +16,6 @@ https://github.com/Losant/mqtt-garage-opener-example
 https://github.com/kyle-alex-burke/mqtt-slack-chat
 
 ## PM2
-pm2 start ecosystem.config.js --env production
+Linux/Mac:	pm2 start ecosystem.config.js --env production
+Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js"
 
