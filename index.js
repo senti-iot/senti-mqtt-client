@@ -21,9 +21,9 @@ var packets = -3
 var clientId = options.clientId
 
 function updateClient() {
-	console.log('Updating client:' + clientId, dateTimeLog())
+	console.log(clientId + ': updating ', dateTimeLog())
 	log()
-	client.publish('sensor/test', 'Client restarted ' + dateTimeLog())
+	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
@@ -39,7 +39,7 @@ var client = mqtt.connect(options.host, {
 })
 
 client.publish('sensor/status', 'online', { retain: true })
-client.publish('sensor/status' + clientId, 'online', { retain: true })
+client.publish('sensor/status/' + clientId, 'online', { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
@@ -58,7 +58,7 @@ client.on('message', function (topic, message) {
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			updateClient()
-			postToSlack(channel, `{"text":"Updating client: ${clientId} - ${dateTimeLog()}"}`)
+			postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
 	}
 })
