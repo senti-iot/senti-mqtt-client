@@ -23,3 +23,6 @@ Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js"
 mqtt subscribe -h hive.senti.cloud -t sensor/status
 mqtt publish -h hive.senti.cloud -t sensor/test -m "Hello world"
 
+## Nodemon
+nodemon index.js --watch index.js
+

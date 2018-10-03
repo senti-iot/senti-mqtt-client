@@ -8,7 +8,7 @@ const options = {
 	password: '',
 	keepalive: 5,
 	clientId: hostname,
-	clean: true,
+	clean: true, // false for persistende sessions
 	will: {
 		topic: 'sensor/status',
 		payload: 'offline',

@@ -54,7 +54,7 @@ client.on('connect', function () {
 
 client.on('message', function (topic, message) {
 	console.log(message.toString())
-	log()
+	log()	
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
 			client.publish('sensor/status/' + clientId, 'offline', { retain: false })
@@ -62,6 +62,7 @@ client.on('message', function (topic, message) {
 			postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
 	}
+	postToSlack(channel, `{"text":"${message.toString()}"}`)
 })
 
 client.on('offline', function () {	

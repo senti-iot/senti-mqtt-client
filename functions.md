@@ -21,6 +21,5 @@
 - Push to Slack from clients
 - Added local hostname to clientId (temp)
 - Make MQTT connect options argument work and require from external file
-
-
+- Connected to node-red
 
