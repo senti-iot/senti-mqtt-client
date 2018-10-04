@@ -10,10 +10,10 @@ const options = {
 	clientId: hostname,
 	clean: true, // false for persistende sessions
 	will: {
-		topic: 'sensor/status',
+		topic: 'sensor/status' + hostname,
 		payload: 'offline',
 		qos: 1,
-		retain: true
+		retain: false
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da'
