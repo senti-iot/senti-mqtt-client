@@ -5,6 +5,7 @@ clear
 
 echo Starting Senti MQTT Client service ...
 echo
+mkdir -p logs
 pm2 start index.js --name "senti-mqtt-client" --watch "./index.js"
 pm2 save
 pm2 ls
