@@ -10,7 +10,7 @@ const options = {
 	clientId: hostname,
 	clean: true, // false for persistende sessions
 	will: {
-		topic: 'sensor/status' + hostname,
+		topic: 'sensor/status/' + hostname,
 		payload: 'offline',
 		qos: 1,
 		retain: true

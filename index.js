@@ -21,7 +21,7 @@ var packets = -3
 var clientId = options.clientId
 
 function updateClient() {
-	client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false })
+	client.publish('sensor/status' + clientId, 'offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	log()
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
@@ -33,7 +33,6 @@ function updateClient() {
 	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
-
 }
 
 var client = mqtt.connect(options.host, {
@@ -42,8 +41,8 @@ var client = mqtt.connect(options.host, {
 	will: options.will
 })
 
-client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: true })
-client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: true })
+// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+// client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
