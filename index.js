@@ -1,19 +1,14 @@
 #!/usr/bin/env /usr/local/bin/node
 
 const options = require('./options').options
+const dateTimeLog = require('./utils/datetimelog').dateTimeLog
 const log = require('./utils/log').log
 const postToSlack = require('./utils/slack').postMessageToSlack
 var exec = require('child_process').exec
-var moment = require('moment')
 var mqtt = require('mqtt')
 
 const channel = options.slackChannel
-
-moment.locale(options.logLocale)
-
-const dateTimeLog = () => {
-	return moment().format('L - HH:mm:ss (ms)')
-}
+const slackOn = false
 
 var counter = 0
 var packets = -3
@@ -51,7 +46,7 @@ client.on('connect', function () {
 			client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 			client.publish('sensor/test', clientId + ': connected')			
 			client.subscribe('sensor/update')			
-			postToSlack(channel, `{"text":"${clientId}: connected"}`)
+			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 			counter++
 		}
 	})
@@ -65,10 +60,10 @@ client.on('message', function (topic, message) {
 			client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
 			client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false })
 			updateClient()
-			postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
+			if (slackOn) postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
 	}
-	postToSlack(channel, `{"text":"${message.toString()}"}`)
+	if (slackOn) postToSlack(channel, `{"text":"${message.toString()}"}`)
 })
 
 client.on('offline', function () {	
