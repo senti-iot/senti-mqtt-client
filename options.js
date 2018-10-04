@@ -11,7 +11,7 @@ const options = {
 	clean: true, // false for persistende sessions
 	will: {
 		topic: 'sensor/status/' + hostname,
-		payload: 'offline',
+		payload: 'offline (dead)',
 		qos: 1,
 		retain: true
 	},
