@@ -12,7 +12,7 @@ const channel = options.slackChannel
 moment.locale(options.logLocale)
 
 const dateTimeLog = () => {
-	return moment().format('L - HH:mm:ss')
+	return moment().format('L - HH:mm:ss (ms)')
 }
 
 var counter = 0
@@ -21,15 +21,19 @@ var packets = -3
 var clientId = options.clientId
 
 function updateClient() {
+	client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	log()
-	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
 			log()
 		}
 	})
+	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
+	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
+	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+
 }
 
 var client = mqtt.connect(options.host, {
@@ -38,12 +42,14 @@ var client = mqtt.connect(options.host, {
 	will: options.will
 })
 
-client.publish('sensor/status', 'online', { retain: true })
-client.publish('sensor/status/' + clientId, 'online', { retain: true })
+client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: true })
+client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: true })
 
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
+			client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+			client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 			client.publish('sensor/test', clientId + ': connected')			
 			client.subscribe('sensor/update')			
 			postToSlack(channel, `{"text":"${clientId}: connected"}`)
@@ -57,7 +63,8 @@ client.on('message', function (topic, message) {
 	log()	
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
-			client.publish('sensor/status/' + clientId, 'offline', { retain: false })
+			client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
+			client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false })
 			updateClient()
 			postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
@@ -66,6 +73,8 @@ client.on('message', function (topic, message) {
 })
 
 client.on('offline', function () {	
+	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false }) // temp mutual test topic
+	client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false }) // topic for 
 	console.log('We are offline', dateTimeLog())
 	log()
 })
