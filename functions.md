@@ -8,6 +8,7 @@
 - Communicate internally to own ID topics - e.g. 
 - Get keepalive and topic info from API
 - Get MQTT username + password from API (SSL)
+- React client (simple create-react-app) to subscribe to senti client and update state with status
 
 ## Done:
 - On message = "now" on topic /sensor/update
