@@ -26,9 +26,4 @@ sudo mkdir -p /srv/nodejs/senti-mqtt-client/logs
 echo
 echo Starting senti-mqtt-client service ...
 echo
-pm2 start ecosystem.config.js --env production
-pm2 save
-
-
-
-
+bash run.sh

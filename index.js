@@ -41,9 +41,6 @@ var client = mqtt.connect(options.host, {
 	will: options.will
 })
 
-// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
-// client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: true })
-
 client.on('connect', function () {
 	client.subscribe('sensor/test', function (err) {
 		if (!err) {
@@ -62,8 +59,6 @@ client.on('message', function (topic, message) {
 	log()	
 	if (topic.toString() === 'sensor/update') {
 		if (message.toString() === 'now') {		
-			// client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
-			// client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false })
 			updateClient()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
@@ -73,7 +68,6 @@ client.on('message', function (topic, message) {
 
 client.on('offline', function () {	
 	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false }) // temp mutual test topic
-	// client.publish('sensor/status', 'offline ' + dateTimeLog(), { retain: false }) // topic for 
 	console.log('We are offline', dateTimeLog())
 	log()
 })
