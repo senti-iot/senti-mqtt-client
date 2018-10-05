@@ -1,29 +1,23 @@
 #!/bin/bash
 #chmod 700 updateclient.sh
 
-echo Updating Senti-MQTT-Client ...
+echo LOGGED UPDATE 1.0 > .logged_update.txt
 
 if [ "$EUID" -ne 0 ]
-  then echo "Please run as root" >> logged_update.txt
+  then echo "Please run as root" >> .logged_update.txt
   exit
 fi
 
-echo 
-echo Pulling latest updates from GitHub
-git pull
-
+git pull >> .logged_update.txt
 retval=$?
 # do_something $retval
 if [ $retval -ne 0 ]; then
-    echo "Return code from git pull was not zero but $retval" >> logged_update.txt
+    echo "Return code from git pull was not zero but $retval" >> .logged_update.txt
 fi
 echo 
 
-echo Installing upgrades
-echo
-npm install
-
+npm install >> .logged_update.txt
 retval=$?
 if [ $retval -ne 0 ]; then
-    echo "Return code from npm install was not zero but $retval" >> logged_update.txt
+    echo "Return code from npm install was not zero but $retval" >> .logged_update.txt
 fi

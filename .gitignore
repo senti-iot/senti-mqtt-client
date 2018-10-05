@@ -30,5 +30,6 @@ yarn.lock*
 # logs
 *.log
 .node-*
-logged_update.txt
+.logged_update.txt
+
 
