@@ -7,6 +7,6 @@
 	"ext": "js, css",
 	"events": {
 		"restart": ["osascript -e 'display notification \"app restarted\" with title \"nodemon\"'",
-					"git pull"]
+					"git pull >> .logged_update.txt"]
 	}
 }
