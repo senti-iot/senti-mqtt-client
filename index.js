@@ -20,7 +20,7 @@ setInterval(() => {
 }, (options.keepalive * 1000))
 
 
-function updateClient() {
+const updateClient = () => {
 	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	log()
