@@ -13,7 +13,6 @@
 - JSON schema with primary payload and meta data
 - JSON decode payload
 - Thin client - remove foreign topic chatter
-- Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -30,3 +29,4 @@
 - Connected to node-red (yeah!!)
 - React client (simple create-react-app) to subscribe to senti client and update state with status
 - Create localhost dir and ini for tests - /srv/senti/etc/infoAgent.ini
+- Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
