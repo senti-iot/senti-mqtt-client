@@ -1,9 +1,9 @@
 #!/usr/bin/env /usr/local/bin/node
 
-const options = require('./options').options
-const dateTimeLog = require('./utils/datetimelog').dateTimeLog
-const log = require('./utils/log').log
-const postToSlack = require('./utils/slack').postMessageToSlack
+const options = require('./options')
+const dateTimeLog = require('./utils/datetimelog')
+const log = require('./utils/log')
+const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')

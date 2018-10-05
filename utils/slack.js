@@ -6,6 +6,4 @@ function postMessageToSlack(url, message) {
 	xmlhttp.send(message)
 }
 
-module.exports = {
-	postMessageToSlack: postMessageToSlack
-}
+module.exports = postMessageToSlack

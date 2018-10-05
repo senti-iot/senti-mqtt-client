@@ -40,6 +40,4 @@ const options = {
 	logLocale: 'da'
 }
 
-module.exports = {
-	options: options
-}
+module.exports = options

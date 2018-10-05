@@ -21,6 +21,4 @@ function log(arguments) {
 }
 
 
-module.exports = {
-	log: log
-}
+module.exports = log
