@@ -5,6 +5,7 @@ const dateTimeLog = require('./utils/datetimelog')
 const log = require('./utils/log')
 const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
+const npmInstall = require('./utils/npminstall')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')
 
@@ -25,6 +26,7 @@ const updateClient = () => {
 	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	gitUpdate()
+	npmInstall()
 	log()
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
