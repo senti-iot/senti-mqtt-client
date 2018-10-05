@@ -10,7 +10,7 @@ fi
 
 echo 
 echo Pulling latest updates from GitHub
-sudo git pull
+git pull
 
 retval=$?
 # do_something $retval

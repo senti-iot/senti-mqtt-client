@@ -24,7 +24,7 @@ function updateClient() {
 	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	log()
-	exec('bash updateclient.sh', function (error, stdout, stderr) {
+	exec('bash updateclient.sh >> logged_update.txt', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
 			log()
