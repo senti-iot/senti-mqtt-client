@@ -8,7 +8,7 @@ https://www.hivemq.com/blog/mqtt-client-library-mqtt-js
 ## API for Webhook
 https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
 
-## Garage Door Opener example
+## NodeJS & MQTT
 https://blog.risingstack.com/getting-started-with-nodejs-and-mqtt/
 https://github.com/Losant/mqtt-garage-opener-example
 
@@ -35,4 +35,3 @@ https://www.npmjs.com/package/ini
 
 ## Tracking with MQTT
 https://owntracks.org/booklet/guide/broker/
-
