@@ -4,9 +4,5 @@
 		"options.js",
 		"utils/"
 	],
-	"ext": "js, css",
-	"events": {
-		"restart": ["osascript -e 'display notification \"app restarted\" with title \"nodemon\"'",
-					"git pull >> .logged_update.txt"]
-	}
+	"ext": "js, css"
 }
