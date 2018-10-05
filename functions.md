@@ -9,6 +9,11 @@
 - Get keepalive and topic info from API
 - Get MQTT username + password from API (SSL)
 - React client (simple create-react-app) to subscribe to senti client and update state with status
+- Topic structure design
+- Topic structure implemented
+- JSON schema with primary payload and meta data
+- JSON decode payload
+- Thin client - remove foreign topic chatter
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -22,5 +27,5 @@
 - Push to Slack from clients
 - Added local hostname to clientId (temp)
 - Make MQTT connect options argument work and require from external file
-- Connected to node-red
+- Connected to node-red (yeah!!)
 
