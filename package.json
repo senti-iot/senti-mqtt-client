@@ -33,6 +33,7 @@
     "moment": "^2.22.2",
     "mqtt": "^2.18.8",
     "node-fetch": "^2.2.0",
+    "simple-git": "^1.104.0",
     "xmlhttprequest": "^1.8.0"
   }
 }
