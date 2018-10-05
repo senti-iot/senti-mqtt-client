@@ -10,8 +10,9 @@
 - Get MQTT username + password from API (SSL)
 - Topic structure design
 - Topic structure implemented
-- JSON schema with primary payload and meta data
+- JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
 - JSON decode payload
+- JSON check if valid JSON (parsed)
 - Thin client - remove foreign topic chatter
 
 ## Done:
