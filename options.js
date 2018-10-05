@@ -20,7 +20,7 @@ const options = {
 		topic: 'sensor/status/' + config.rpi.deviceId,
 		payload: 'offline (dead)',
 		qos: 1,
-		retain: true
+		retain: false // i can't decide true/false
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da'
