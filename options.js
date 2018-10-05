@@ -1,16 +1,23 @@
 var os = require("os")
 var hostname = os.hostname()
 
+var fs = require('fs')
+	, ini = require('ini')
+
+var config = ini.parse(fs.readFileSync('/srv/senti/etc/infoAgent.ini', 'utf-8'))
+
+console.log(config.rpi.deviceId)
+
 const options = {
 	host: 'mqtt://hive.senti.cloud',
 	port: '1883',
 	username: '',
 	password: '',
 	keepalive: 5,
-	clientId: hostname,
+	clientId: config.rpi.deviceId,
 	clean: true, // false for persistende sessions
 	will: {
-		topic: 'sensor/status/' + hostname,
+		topic: 'sensor/status/' + config.rpi.deviceId,
 		payload: 'offline (dead)',
 		qos: 1,
 		retain: true

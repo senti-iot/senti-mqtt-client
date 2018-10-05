@@ -8,12 +8,12 @@
 - Communicate internally to own ID topics - e.g. 
 - Get keepalive and topic info from API
 - Get MQTT username + password from API (SSL)
-- React client (simple create-react-app) to subscribe to senti client and update state with status
 - Topic structure design
 - Topic structure implemented
 - JSON schema with primary payload and meta data
 - JSON decode payload
 - Thin client - remove foreign topic chatter
+- Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -28,4 +28,5 @@
 - Added local hostname to clientId (temp)
 - Make MQTT connect options argument work and require from external file
 - Connected to node-red (yeah!!)
-
+- React client (simple create-react-app) to subscribe to senti client and update state with status
+- Create localhost dir and ini for tests - /srv/senti/etc/infoAgent.ini
