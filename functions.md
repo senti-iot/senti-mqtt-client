@@ -30,3 +30,4 @@
 - React client (simple create-react-app) to subscribe to senti client and update state with status
 - Create localhost dir and ini for tests - /srv/senti/etc/infoAgent.ini
 - Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
+- Added .env for further use
