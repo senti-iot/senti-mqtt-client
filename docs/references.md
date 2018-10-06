@@ -46,3 +46,4 @@ https://hackernoon.com/making-node-js-service-always-alive-on-ubuntu-server-e20c
 Linux/Mac:	pm2 start ecosystem.config.js
 Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js ./options.js ./utils/*"
 Pi:			pm2 start index.js --name "senti-mqtt-client"
+

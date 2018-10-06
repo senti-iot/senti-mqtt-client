@@ -6,7 +6,7 @@ const log = require('./utils/log')
 const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
 const npmInstall = require('./utils/npminstall')
-const pushUpdate = require('./utils/pushUpdate')
+// const pushUpdate = require('./utils/pushUpdate')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')
 
@@ -37,7 +37,7 @@ const updateClient = () => {
 			log()
 		}
 	})
-	process.kill(process.pid, 'SIGUSR2')
+	// process.kill(process.pid, 'SIGUSR2') // DANGER
 	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })

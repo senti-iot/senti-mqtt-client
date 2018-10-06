@@ -1,7 +1,10 @@
+require('dotenv').config()
 const create = require('apisauce').create
 
+const url = process.env.PUSHAPI
+
 const api = create({
-	baseURL: 'http://services.senti.cloud/dispatch',
+	baseURL: url,
 	timeout: 30000,
 	headers: {
 		'Accept': 'application/json',
@@ -14,3 +17,6 @@ const pushUpdate = () => {
 }
 
 module.exports = pushUpdate
+
+console.log(url)
+pushUpdate()
