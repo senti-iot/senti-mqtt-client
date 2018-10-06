@@ -21,6 +21,7 @@ setInterval(() => {
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 }, (options.keepalive * 1000))
 
+console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
 const updateClient = () => {
 	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
