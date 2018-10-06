@@ -108,3 +108,5 @@ client.on('packetsend', function (packet) {
 		log()
 	}
 })
+
+// Now it should work right? 

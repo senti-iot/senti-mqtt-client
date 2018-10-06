@@ -15,16 +15,11 @@ https://github.com/Losant/mqtt-garage-opener-example
 ## Slack
 https://github.com/kyle-alex-burke/mqtt-slack-chat
 
-## PM2
-Linux/Mac:	pm2 start ecosystem.config.js
-Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js"
 
 ## MQTT CLI
 mqtt sub -h hive.senti.cloud -t sensor/status
 mqtt pub -h hive.senti.cloud -t sensor/test -m "Hello world"
 
-## Nodemon
-nodemon index.js --watch index.js
 
 ## React MQTT 
 https://github.com/lloydXmas/mqtt-react-weather
@@ -35,3 +30,18 @@ https://www.npmjs.com/package/ini
 
 ## Tracking with MQTT
 https://owntracks.org/booklet/guide/broker/
+
+# Process Management
+
+## Nodemon
+nodemon index.js --watch index.js
+
+## SystemD
+https://seanmcgary.com/posts/deploying-nodejs-applications-with-systemd/
+https://blog.codeship.com/running-node-js-linux-systemd/
+https://superuser.com/questions/1171751/restart-systemd-service-automatically-whenever-a-directory-changes-any-file-ins
+https://hackernoon.com/making-node-js-service-always-alive-on-ubuntu-server-e20c9c0808e4 
+
+## PM2
+Linux/Mac:	pm2 start ecosystem.config.js
+Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js"
