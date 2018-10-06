@@ -109,4 +109,3 @@ client.on('packetsend', function (packet) {
 	}
 })
 
-// Now it should work right? 
