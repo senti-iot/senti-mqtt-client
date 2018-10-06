@@ -1,4 +1,5 @@
-require('dotenv').config()
+require('dotenv').config({ path: '../.env' })
+
 const create = require('apisauce').create
 
 const url = process.env.PUSHAPI
