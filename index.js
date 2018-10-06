@@ -35,10 +35,10 @@ const updateClient = () => {
 			log()
 		}
 	})
-	// process.kill(process.pid, 'SIGUSR2') // DANGER
 	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+	process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 }
 
 var client = mqtt.connect(options.host, {
