@@ -6,7 +6,6 @@ const log = require('./utils/log')
 const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
 const npmInstall = require('./utils/npminstall')
-// const pushUpdate = require('./utils/pushUpdate')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')
 
@@ -22,7 +21,6 @@ setInterval(() => {
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 }, (options.ping))
 
-// pushUpdate()
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
 const updateClient = () => {
