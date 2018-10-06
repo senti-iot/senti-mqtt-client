@@ -27,7 +27,7 @@ const options = {
 	port: '1883',
 	username: '',
 	password: '',
-	keepalive: 1,
+	keepalive: 10,
 	clientId: _clientId || hostname,
 	clean: true, // false for persistende sessions
 	will: {
@@ -37,7 +37,8 @@ const options = {
 		retain: false
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
-	logLocale: 'da'
+	logLocale: 'da',
+	ping: 1
 }
 
 module.exports = options

@@ -16,6 +16,7 @@
 - Thin client - remove foreign topic chatter
 - API to set client in verbose logging mode (on/off)
 - MQTT topic to execute CLI commands instantly (return result to ?)
+- Split keepAlive into keepAlive + ping
 
 ## Done:
 - On message = "now" on topic /sensor/update
