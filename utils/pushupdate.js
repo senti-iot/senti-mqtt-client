@@ -19,5 +19,3 @@ const pushUpdate = () => {
 
 module.exports = pushUpdate
 
-console.log(url)
-pushUpdate()

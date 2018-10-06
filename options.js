@@ -27,7 +27,7 @@ const options = {
 	port: '1883',
 	username: '',
 	password: '',
-	keepalive: 10,
+	keepalive: 60,
 	clientId: _clientId || hostname,
 	clean: true, // false for persistende sessions
 	will: {

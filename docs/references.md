@@ -35,6 +35,8 @@ https://owntracks.org/booklet/guide/broker/
 
 ## Nodemon
 nodemon index.js --watch index.js
+nodemon (using the nodemon.json config file)
+https://codeburst.io/dont-use-nodemon-there-are-better-ways-fc016b50b45e
 
 ## SystemD
 https://seanmcgary.com/posts/deploying-nodejs-applications-with-systemd/

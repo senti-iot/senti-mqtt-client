@@ -1,3 +1,4 @@
+// console.log = () => {}  //Uncomment for production
 const execFile = require('child_process').execFile
 
 const options = require('../options')
@@ -14,4 +15,4 @@ const child=execFile(cmd, [args], (error, stdout, stderr) => {
 
 module.exports = execCmd
 
-execCmd('ls', '-al')
+// execCmd('ls', '-al')

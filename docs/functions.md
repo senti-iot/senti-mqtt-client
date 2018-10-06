@@ -16,7 +16,6 @@
 - Thin client - remove foreign topic chatter
 - API to set client in verbose logging mode (on/off)
 - MQTT topic to execute CLI commands instantly (return result to ?)
-- Split keepAlive into keepAlive + ping
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -35,3 +34,4 @@
 - Create localhost dir and ini for tests - /srv/senti/etc/infoAgent.ini
 - Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
 - Added .env for further use
+- Split keepAlive into keepAlive + ping
