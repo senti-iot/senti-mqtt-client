@@ -2,7 +2,6 @@
 const create = require('apisauce').create
 
 const api = create({
-	// baseURL: backendHost,
 	baseURL: 'http://localhost:3000/api/1/options',
 	timeout: 30000,
 	headers: {
