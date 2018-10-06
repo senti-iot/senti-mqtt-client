@@ -38,7 +38,7 @@ const options = {
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da',
-	ping: 1000
+	ping: 50
 }
 
 module.exports = options
