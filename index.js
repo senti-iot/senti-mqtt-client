@@ -22,7 +22,7 @@ setInterval(() => {
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 }, (options.ping))
 
-pushUpdate()
+// pushUpdate()
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
 const updateClient = () => {
