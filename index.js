@@ -57,7 +57,7 @@ client.on('connect', function () {
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 		}
 	})
-	console.log('SENTI MQTT CLIENT SERVICES STARTED!')
+	console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
 	log()
 })
 
@@ -75,11 +75,14 @@ client.on('message', function (topic, message) {
 	
 	switch (topicStr) {
 		case 'sensor/update': if (msgStr === 'now') {
-			// console.log('SENSOR/UPDATE')
+			console.log('SENSOR/UPDATE')
 			// log()
 		} 
 			break
-		case 'restart': process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
+		case 'sensor/update': if (msgStr === 'restart') {
+			console.log('RESTART')
+			// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
+		} 
 			break
 		case 'reboot':
 			break
