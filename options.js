@@ -7,8 +7,6 @@ const isPi = require('./utils/rpi-detect')
 const hostname = os.hostname()
 const platform = os.platform()
 
-var config
-
 const sensorType = () => {
 	if (isPi()) return 'sentiwi'
 	else return platform
@@ -29,6 +27,7 @@ const getClientId = () => {
 
 const _clientId = getClientId()
 const _topic = 'senti/sensor/' + sensorType() + '/' + _clientId
+// _topic = senti/sensor/type/clientid
 // _topic = senti/sensor/darwin/cb-air
 
 const options = {
@@ -38,9 +37,8 @@ const options = {
 	password: '',
 	keepalive: 60,
 	clientId: _clientId,
-	clean: true, // false for persistende sessions
+	clean: true, // false for persistent sessions
 	will: {
-		// topic: 'sensor/status/' + _clientId,
 		topic: _topic + '/status',
 		payload: 'offline (dead)',
 		qos: 1,

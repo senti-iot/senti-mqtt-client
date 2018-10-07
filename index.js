@@ -40,8 +40,6 @@ const updateClient = () => {
 	})
 	console.log('UPDATE COMPLETED!')
 	log()
-
-	// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 }
 
 var client = mqtt.connect(options.host, {
@@ -64,28 +62,28 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
 	let topicStr = topic.toString()
 	let msgStr = message.toString()
-	
-	if (topicStr === 'sensor/update') {
-		if (msgStr === 'now') {		
-			updateClient()
-			if (slackOn) postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
-		}
-	}
+
 	if (slackOn) postToSlack(channel, `{"text":"${message.toString()}"}`)
 	
 	switch (topicStr) {
 		case 'sensor/update': if (msgStr === 'now') {
-			console.log('SENSOR/UPDATE')
-			// log()
+			console.log('CLIENT UPDATE')
+			log()
+			updateClient()
 		} 
-			break
 		case 'sensor/update': if (msgStr === 'restart') {
 			console.log('RESTART')
-			// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
+			log()
+			process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts nodemon
 		} 
-			break
-		case 'reboot':
-			break
+		case 'sensor/update': if (msgStr === 'reboot') {
+			console.log('REBOOT')
+			log()
+		}
+		case 'sensor/update': if (msgStr === 'clear') {
+			console.log('CLEAR')
+			log()
+		}
 		default:
 			break
 	}

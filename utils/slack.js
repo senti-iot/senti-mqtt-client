@@ -7,3 +7,12 @@ function postMessageToSlack(url, message) {
 }
 
 module.exports = postMessageToSlack
+
+	// if (topicStr === 'sensor/update') {
+	// 	if (msgStr === 'now') {		
+	// 		updateClient()
+	// 		if (slackOn) postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
+	// 	}
+	// }
+
+	
