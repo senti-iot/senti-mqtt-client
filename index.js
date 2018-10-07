@@ -27,7 +27,8 @@ setInterval(() => {
 
 const updateClient = () => {
 	client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
-	console.log(clientId + ': updating ', dateTimeLog())
+	client.publish(status, clientId + ' updating ' + dateTimeLog(), { retain: false })
+	console.log(clientId + ': updating ...', dateTimeLog())
 	log()
 	gitUpdate()
 	npmInstall()
