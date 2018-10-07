@@ -74,8 +74,8 @@ client.on('message', function (topic, message) {
 	
 	switch (topicStr) {
 		case 'sensor/update': if (msgStr === 'now') {
-			console.log('SENSOR/UPDATE')
-			log()
+			// console.log('SENSOR/UPDATE')
+			// log()
 		} 
 			break
 		case 'restart':
