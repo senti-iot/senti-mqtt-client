@@ -1,6 +1,6 @@
 const execFile = require('child_process').execFile
-
 const options = require('../options')
+const log = require('./log')
 
 const runInstall = () => {
 const child=execFile('npm', ['install'], (error, stdout, stderr) => {
@@ -8,7 +8,8 @@ const child=execFile('npm', ['install'], (error, stdout, stderr) => {
 		console.error('stderr', stderr)
 		throw error
 	}
-	// console.log(options.clientId + ': npm install', stdout)
+	console.log('npm install', stdout)
+	log()
 })
 }
 
