@@ -17,6 +17,7 @@ const topic = options.topic
 const status = topic + '/status'
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
+log()
 
 setInterval(() => {
 	// client.publish('sensor/status/' + clientId, clientId + ' online ' + dateTimeLog(), { retain: false })
@@ -25,12 +26,11 @@ setInterval(() => {
 
 
 const updateClient = () => {
-	// client.publish('sensor/status/' + clientId, ' offline ' + dateTimeLog(), { retain: false })
-	client.publish(status, ' offline ' + dateTimeLog(), { retain: false })
+	client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
+	log()
 	gitUpdate()
 	npmInstall()
-	log()
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
@@ -57,6 +57,7 @@ client.on('connect', function () {
 		}
 	})
 	console.log('SENTI MQTT CLIENT SERVICES STARTED!')
+	log()
 })
 
 client.on('message', function (topic, message) {
@@ -72,11 +73,14 @@ client.on('message', function (topic, message) {
 	if (slackOn) postToSlack(channel, `{"text":"${message.toString()}"}`)
 	
 	switch (topicStr) {
-		case 'sensor/update': if (msgStr === 'now') console.log('SENSOR/UPDATE')
+		case 'sensor/update': if (msgStr === 'now') {
+			console.log('SENSOR/UPDATE')
+			log()
+		} 
 			break
-		case '2':
+		case 'restart':
 			break
-		case '3':
+		case 'reboot':
 			break
 		default:
 			break
