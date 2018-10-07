@@ -18,7 +18,7 @@ var packets = -3
 var clientId = options.clientId
 
 setInterval(() => {
-	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
+	client.publish('sensor/status/' + clientId, clientId + ' online ' + dateTimeLog(), { retain: false })
 }, (options.ping))
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
