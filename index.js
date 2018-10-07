@@ -37,9 +37,9 @@ const updateClient = () => {
 			log()
 		}
 	})
-	// client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
-	// client.publish(status + clientId, 'online ' + dateTimeLog(), { retain: false })
-	// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+	console.log('UPDATE COMPLETED!')
+	log()
+
 	// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 }
 
