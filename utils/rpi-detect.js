@@ -1,11 +1,11 @@
-var isPi = require('detect-rpi')
+const detect = require('detect-rpi')
 
-if (isPi()) {
-	console.log('Running on Raspberry Pi!')
-} else {
-	console.log('Running on other platform')
+const isPi = () => {
+	if (detect()) {
+		return true
+	} else {
+		return false
+	}
 }
 
-module.exports = {
-	isPi: isPi
-}
+module.exports = isPi

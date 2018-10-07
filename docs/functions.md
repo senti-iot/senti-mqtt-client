@@ -15,7 +15,8 @@
 - JSON check if valid JSON (parsed)
 - Thin client - remove foreign topic chatter
 - API to set client in verbose logging mode (on/off)
-- MQTT topic to execute CLI commands instantly (return result to ?)
+- MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
+- Topic to update specific client 
 
 ## Done:
 - On message = "now" on topic /sensor/update

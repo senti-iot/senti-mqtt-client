@@ -1,13 +1,21 @@
+// console.log = () => {}  //Uncomment for production
 var os = require("os")
-var hostname = os.hostname()
-
 var fs = require('fs')
 var ini = require('ini')
+const isPi = require('./utils/rpi-detect')
 
-// var config = ini.parse(fs.readFileSync('/srv/senti/etc/infoAgent.ini', 'utf-8'))
+const hostname = os.hostname()
+const platform = os.platform()
 
 var _clientId
 var config
+
+// const sensorType = isPi ? 'sentiwi' : platform
+
+const sensorType = () => {
+	if (isPi()) return 'sentiwi'
+	else return platform
+}
 
 try {
 	config = ini.parse(fs.readFileSync('/srv/senti/etc/infoAgent.ini', 'utf-8'))
@@ -20,7 +28,10 @@ try {
 	}
 }
 
-console.log(_clientId)
+const _topic = 'senti/sensor/' + sensorType() + '/' + _clientId
+
+// console.log(_clientId)
+console.log(_topic)
 
 const options = {
 	host: 'mqtt://hive.senti.cloud',
@@ -38,7 +49,8 @@ const options = {
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da',
-	ping: 1000
+	ping: 1000,
+	topic: _topic
 }
 
 module.exports = options
