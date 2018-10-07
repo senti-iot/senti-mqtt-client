@@ -8,7 +8,7 @@ const child=execFile('npm', ['install'], (error, stdout, stderr) => {
 		console.error('stderr', stderr)
 		throw error
 	}
-	console.log(options.clientId + ': npm install', stdout)
+	// console.log(options.clientId + ': npm install', stdout)
 })
 }
 
