@@ -9,8 +9,6 @@ const platform = os.platform()
 
 var config
 
-// const sensorType = isPi ? 'sentiwi' : platform
-
 const sensorType = () => {
 	if (isPi()) return 'sentiwi'
 	else return platform
@@ -32,8 +30,6 @@ const getClientId = () => {
 const _clientId = getClientId()
 const _topic = 'senti/sensor/' + sensorType() + '/' + _clientId
 // _topic = senti/sensor/darwin/cb-air
-
-console.log(_topic)
 
 const options = {
 	host: 'mqtt://hive.senti.cloud',
