@@ -15,16 +15,21 @@ const slackOn = false
 var counter = 0
 var packets = -3
 
-var clientId = options.clientId
-
-setInterval(() => {
-	client.publish('sensor/status/' + clientId, clientId + ' online ' + dateTimeLog(), { retain: false })
-}, (options.ping))
+const clientId = options.clientId
+const topic = options.topic
+const status = topic + '/status'
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
+setInterval(() => {
+	// client.publish('sensor/status/' + clientId, clientId + ' online ' + dateTimeLog(), { retain: false })
+	client.publish(status, clientId + ' online ' + dateTimeLog(), { retain: false })
+}, (options.ping))
+
+
 const updateClient = () => {
-	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false })
+	// client.publish('sensor/status/' + clientId, ' offline ' + dateTimeLog(), { retain: false })
+	client.publish(status, ' offline ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ', dateTimeLog())
 	gitUpdate()
 	npmInstall()
@@ -35,9 +40,9 @@ const updateClient = () => {
 			log()
 		}
 	})
-	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
-	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
-	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+	// client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
+	// client.publish(status + clientId, 'online ' + dateTimeLog(), { retain: false })
+	// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
 	// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 }
 
@@ -48,11 +53,11 @@ var client = mqtt.connect(options.host, {
 })
 
 client.on('connect', function () {
-	client.subscribe('sensor/test', function (err) {
-		if (!err) {
-			client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
-			client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
-			client.publish('sensor/test', clientId + ': connected')			
+	client.subscribe(status, function (error) {
+		if (!error) {
+			// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
+			// client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
+			// client.publish('sensor/test', clientId + ': connected')			
 			client.subscribe('sensor/update')			
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 			counter++
@@ -64,8 +69,8 @@ client.on('message', function (topic, message) {
 	let topicStr = topic.toString()
 	let msgStr = message.toString()
 	
-	console.log(topicStr + '/' + msgStr)
-	log()	
+	// console.log(topicStr + '/' + msgStr)
+	// log()	
 	
 	if (topicStr === 'sensor/update') {
 		if (msgStr === 'now') {		
@@ -88,8 +93,8 @@ client.on('message', function (topic, message) {
 })
 
 client.on('offline', function () {	
-	client.publish('sensor/status/' + clientId, 'offline ' + dateTimeLog(), { retain: false }) // temp mutual test topic
-	console.log('We are offline', dateTimeLog())
+	client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
+	console.log('Offline ...', dateTimeLog())
 	log()
 })
 
@@ -99,8 +104,8 @@ client.on("error", function (error) {
 })
 
 client.on('reconnect', function () {
-	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
-	console.log("Reconnected", dateTimeLog())
+	client.publish(status, clientId + ' online ' + dateTimeLog(), { retain: false })
+	console.log("Reconnected ...", dateTimeLog())
 	log()
 })
 
@@ -110,7 +115,7 @@ client.on('disconnect', function () {
 })
 
 client.on('close', function () {	
-	console.log('We are closing', dateTimeLog())
+	console.log('Closing ...', dateTimeLog())
 	log()
 })
 
@@ -121,8 +126,8 @@ client.on('packetreceive', function (packet) {
 client.on('packetsend', function (packet) {
 	packets++
 	if (counter > 0) {
-		console.log(clientId, '- connection:', counter, '- ping:', packets, '-', dateTimeLog())
-		log()
+		// console.log(clientId, '- connection:', counter, '- ping:', packets, '-', dateTimeLog())
+		// log()
 	}
 })
 

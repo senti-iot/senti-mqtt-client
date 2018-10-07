@@ -7,7 +7,6 @@ const isPi = require('./utils/rpi-detect')
 const hostname = os.hostname()
 const platform = os.platform()
 
-var _clientId
 var config
 
 // const sensorType = isPi ? 'sentiwi' : platform
@@ -17,20 +16,23 @@ const sensorType = () => {
 	else return platform
 }
 
-try {
-	config = ini.parse(fs.readFileSync('/srv/senti/etc/infoAgent.ini', 'utf-8'))
-	_clientId = config.rpi.deviceId
-} catch (err) {
-	if (err.code === 'ENOENT') {
-		_clientId = hostname
-	} else {
-		throw err;
+const getClientId = () => {
+	try {
+		let config = ini.parse(fs.readFileSync('/srv/senti/etc/infoAgent.ini', 'utf-8'))
+		return config.rpi.deviceId
+	} catch (err) {
+		if (err.code === 'ENOENT') {
+			return hostname
+		} else {
+			throw err
+		}
 	}
 }
 
+const _clientId = getClientId()
 const _topic = 'senti/sensor/' + sensorType() + '/' + _clientId
+// _topic = senti/sensor/darwin/cb-air
 
-// console.log(_clientId)
 console.log(_topic)
 
 const options = {
@@ -39,17 +41,18 @@ const options = {
 	username: '',
 	password: '',
 	keepalive: 60,
-	clientId: _clientId || hostname,
+	clientId: _clientId,
 	clean: true, // false for persistende sessions
 	will: {
-		topic: 'sensor/status/' + _clientId,
+		// topic: 'sensor/status/' + _clientId,
+		topic: _topic + '/status',
 		payload: 'offline (dead)',
 		qos: 1,
 		retain: false
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da',
-	ping: 1000,
+	ping: 5000,
 	topic: _topic
 }
 
