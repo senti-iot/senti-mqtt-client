@@ -12,9 +12,6 @@ var mqtt = require('mqtt')
 const channel = options.slackChannel
 const slackOn = false
 
-var counter = 0
-var packets = -3
-
 const clientId = options.clientId
 const topic = options.topic
 const status = topic + '/status'
@@ -54,23 +51,17 @@ var client = mqtt.connect(options.host, {
 
 client.on('connect', function () {
 	client.subscribe(status, function (error) {
-		if (!error) {
-			// client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
-			// client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
-			// client.publish('sensor/test', clientId + ': connected')			
+		if (!error) {		
 			client.subscribe('sensor/update')			
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
-			counter++
 		}
 	})
+	console.log('SENTI MQTT CLIENT SERVICES STARTED!')
 })
 
 client.on('message', function (topic, message) {
 	let topicStr = topic.toString()
 	let msgStr = message.toString()
-	
-	// console.log(topicStr + '/' + msgStr)
-	// log()	
 	
 	if (topicStr === 'sensor/update') {
 		if (msgStr === 'now') {		
@@ -120,14 +111,8 @@ client.on('close', function () {
 })
 
 client.on('packetreceive', function (packet) {
-	// console.log('Packet received from broker')
 })
 
 client.on('packetsend', function (packet) {
-	packets++
-	if (counter > 0) {
-		// console.log(clientId, '- connection:', counter, '- ping:', packets, '-', dateTimeLog())
-		// log()
-	}
 })
 
