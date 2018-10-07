@@ -38,7 +38,7 @@ const updateClient = () => {
 	client.publish('sensor/test', clientId + ': restarted ' + dateTimeLog())
 	client.publish('sensor/status/' + clientId, 'online ' + dateTimeLog(), { retain: false })
 	client.publish('sensor/status', 'online ' + dateTimeLog(), { retain: false })
-	process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
+	// process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 }
 
 var client = mqtt.connect(options.host, {
@@ -61,15 +61,30 @@ client.on('connect', function () {
 })
 
 client.on('message', function (topic, message) {
-	console.log(message.toString())
+	let topicStr = topic.toString()
+	let msgStr = message.toString()
+	
+	console.log(topicStr + '/' + msgStr)
 	log()	
-	if (topic.toString() === 'sensor/update') {
-		if (message.toString() === 'now') {		
+	
+	if (topicStr === 'sensor/update') {
+		if (msgStr === 'now') {		
 			updateClient()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: updating - ${dateTimeLog()}"}`)
 		}
 	}
 	if (slackOn) postToSlack(channel, `{"text":"${message.toString()}"}`)
+	
+	switch (topicStr) {
+		case 'sensor/update': if (msgStr === 'now') console.log('SENSOR/UPDATE')
+			break
+		case '2':
+			break
+		case '3':
+			break
+		default:
+			break
+	}
 })
 
 client.on('offline', function () {	
