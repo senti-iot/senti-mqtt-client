@@ -79,7 +79,7 @@ client.on('message', function (topic, message) {
 			// log()
 		} 
 			break
-		case 'restart':
+		case 'restart': process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts index.js
 			break
 		case 'reboot':
 			break

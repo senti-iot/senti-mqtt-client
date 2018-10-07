@@ -4,16 +4,11 @@
 - Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
 - Switch statement to control message actions 
 - On message = "reboot" on topic /sensor/update
-- Local configuration and device ID from local file
-- Communicate internally to own ID topics - e.g. 
-- Get keepalive and topic info from API
+- Get keepalive, ping and topic info from API
 - Get MQTT username + password from API (SSL)
-- Topic structure design
-- Topic structure implemented
 - JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
 - JSON decode payload
 - JSON check if valid JSON (parsed)
-- Thin client - remove foreign topic chatter
 - API to set client in verbose logging mode (on/off)
 - MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
 - Topic to update specific client 
@@ -36,3 +31,8 @@
 - Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
 - Added .env for further use
 - Split keepAlive into keepAlive + ping
+- Local configuration and device ID from local file
+- Communicate internally to own ID topics - e.g. 
+- Thin client - remove foreign topic chatter
+- Topic structure design
+- Topic structure implemented
