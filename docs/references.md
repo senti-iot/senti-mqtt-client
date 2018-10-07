@@ -7,6 +7,7 @@ https://www.hivemq.com/blog/mqtt-client-library-mqtt-js
 
 ## API for Webhook
 https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
+https://coursework.vschool.io/express-params-and-query/
 
 ## NodeJS & MQTT
 https://blog.risingstack.com/getting-started-with-nodejs-and-mqtt/
@@ -15,11 +16,9 @@ https://github.com/Losant/mqtt-garage-opener-example
 ## Slack
 https://github.com/kyle-alex-burke/mqtt-slack-chat
 
-
 ## MQTT CLI
 mqtt sub -h hive.senti.cloud -t sensor/status
 mqtt pub -h hive.senti.cloud -t sensor/test -m "Hello world"
-
 
 ## React MQTT 
 https://github.com/lloydXmas/mqtt-react-weather
