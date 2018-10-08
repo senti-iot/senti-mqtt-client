@@ -27,6 +27,7 @@
 - Slack channel for subscribe/publish (create new channel and Slack App)
 - Push to Slack from clients
 - Added local hostname to clientId (temp)
+- Added real device id to clientId
 - Make MQTT connect options argument work and require from external file
 - Connected to node-red (yeah!!)
 - React client (simple create-react-app) to subscribe to senti client and update state with status

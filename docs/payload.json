@@ -1,0 +1,11 @@
+{
+	"watch": [
+		"./index.js",
+		"./options.js",
+		"./utils/*",
+		"./utils/restart.js",
+		"./*"
+	],
+	"ext": "js, css, json, sh"
+}
+
