@@ -82,6 +82,7 @@ client.on('message', function (topic, message) {
 		}
 		case 'sensor/update': if (msgStr === 'clear') {
 			process.stdout.write('\x1Bc')
+			console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
 		}
 		default:
 			break

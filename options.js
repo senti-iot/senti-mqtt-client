@@ -37,7 +37,7 @@ const options = {
 	password: '',
 	keepalive: 60,
 	clientId: _clientId,
-	clean: true, // false for persistent sessions
+	clean: false, // false for persistent sessions
 	will: {
 		topic: _topic + '/status',
 		payload: 'offline (dead)',
