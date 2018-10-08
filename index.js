@@ -81,8 +81,7 @@ client.on('message', function (topic, message) {
 			log()
 		}
 		case 'sensor/update': if (msgStr === 'clear') {
-			console.log('CLEAR')
-			log()
+			process.stdout.write('\x1Bc')
 		}
 		default:
 			break
