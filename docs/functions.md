@@ -13,6 +13,8 @@
 - MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
 - Topic to update specific client 
 - Move Slack to dispatcher
+- Winston logger
+- RPI CPU temp and power consumption 
 
 ## Done:
 - On message = "now" on topic /sensor/update

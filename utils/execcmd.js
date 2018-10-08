@@ -9,7 +9,7 @@ const child=execFile(cmd, [args], (error, stdout, stderr) => {
 		console.error('stderr', stderr)
 		throw error
 	}
-	console.log(options.clientId + ' ' + cmd + ' ' + args, stdout)
+	// console.log(options.clientId + ' ' + cmd + ' ' + args, stdout)
 })
 }
 

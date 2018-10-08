@@ -20,7 +20,6 @@ console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 log()
 
 setInterval(() => {
-	// client.publish('sensor/status/' + clientId, clientId + ' online ' + dateTimeLog(), { retain: false })
 	client.publish(status, clientId + ' online ' + dateTimeLog(), { retain: false })
 }, (options.ping))
 
@@ -77,6 +76,7 @@ client.on('message', function (topic, message) {
 			process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts nodemon
 		} 
 		case 'sensor/update': if (msgStr === 'reboot') {
+			// shutdown -r
 			console.log('REBOOT')
 			log()
 		}

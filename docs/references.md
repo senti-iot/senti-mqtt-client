@@ -48,3 +48,17 @@ Linux/Mac:	pm2 start ecosystem.config.js
 Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js ./options.js ./utils/*"
 Pi:			pm2 start index.js --name "senti-mqtt-client"
 
+## RPI temperature & system info
+https://github.com/sebhildebrandt/systeminformation 
+https://github.com/PsyChip/node-raspi
+https://github.com/bojkovak/rpi-temperature
+https://github.com/odensc/pi-temperature
+https://github.com/coopermaa/rpi-cpu-temperature
+
+Create a file called "temp.js" and insert below code:
+
+var spawn = require('child_process').spawn
+temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp'])
+temp.stdout.on('data', function(data) {
+        console.log('Result: ' + data/1000 + ' degrees Celcius')
+})

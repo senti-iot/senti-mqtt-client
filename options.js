@@ -42,11 +42,11 @@ const options = {
 		topic: _topic + '/status',
 		payload: 'offline (dead)',
 		qos: 1,
-		retain: false
+		retain: true
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da',
-	ping: 1000,
+	ping: 3000,
 	topic: _topic
 }
 
