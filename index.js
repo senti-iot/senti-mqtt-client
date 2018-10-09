@@ -28,7 +28,12 @@ const rpiTemperature = async(log, topic) => {
 }
 
 setInterval(() => {
-	client.publish(status, clientId + ' online ' + dateTimeLog(), { retain: false })
+	let payload = {
+		id: clientId,
+		status: 'online',
+		timestamp: dateTimeLog()
+	}
+	client.publish(status, JSON.stringify(payload), { retain: false })
 }, (options.ping))
 
 
