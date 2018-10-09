@@ -1,5 +1,5 @@
 const execFile = require('child_process').execFile
-const options = require('../options')
+// const options = require('../options')
 const log = require('./log')
 
 const runInstall = () => {

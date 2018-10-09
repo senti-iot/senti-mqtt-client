@@ -15,6 +15,9 @@
 - Move Slack to dispatcher
 - Winston logger
 - RPI CPU temp and power consumption 
+- Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
+- Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
+- Mysql -> Elsaticsearch
 
 ## Done:
 - On message = "now" on topic /sensor/update
