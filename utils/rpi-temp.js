@@ -7,8 +7,8 @@ const rpiTemp = () => {
 		let temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp'])
 		temp.stdout.on('data', function (data) {
 			tempOut = (data / 1000)
+			return tempOut
 		})
-		return tempOut
 	} else return null
 }
 
