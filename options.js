@@ -40,14 +40,15 @@ const options = {
 	clean: false, // false for persistent sessions
 	will: {
 		topic: _topic + '/status',
-		payload: 'offline (dead)',
+		payload: JSON.stringify({ status: 'offline(dead)' }), 
 		qos: 1,
 		retain: true
 	},
 	slackChannel: 'https://hooks.slack.com/services/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',
 	logLocale: 'da',
 	ping: 1000,
-	topic: _topic
+	topic: _topic,
+	tempTopic: _topic + '/temperature'
 }
 
 module.exports = options

@@ -19,9 +19,12 @@ const status = topic + '/status'
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
-const rpiTemperature = async() => {
+const rpiTemperature = async(log, topic) => {
 	let result = await rpiTemp()
-	console.log(result)
+	if (topic) {
+		client.publish(topic, result, { retain: false })
+	}
+	if (log) console.log(result)
 }
 
 setInterval(() => {
@@ -60,7 +63,7 @@ client.on('connect', function () {
 		}
 	})
 	console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
-	rpiTemperature()
+	rpiTemperature(true, options.tempTopic)
 	log()
 })
 
