@@ -84,6 +84,8 @@ temp.stdout.on('data', function(data) {
 })
 ```
 
-## MQTT DB persist
+## MQTT DB persist (mysql + elasticsearch)
 https://www.instructables.com/id/Store-Messages-From-Mosquitto-MQTT-Broker-Into-SQL/ 
 https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/ 
+https://smart-factory.net/mqtt-elasticsearch-setup/ 
+https://github.com/clive-jevons/mqtt-elasticsearch-forwarding/tree/master/nodejs 
