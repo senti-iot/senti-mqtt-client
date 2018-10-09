@@ -34,6 +34,6 @@ async function rpiTemp() {
 	console.log(result)	
 }
 
-module.exports = rpiTemp
+module.exports = getRpiTemp
 
-rpiTemp()
+// rpiTemp()
