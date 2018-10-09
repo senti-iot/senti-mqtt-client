@@ -63,7 +63,7 @@ client.on('connect', function () {
 		}
 	})
 	console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
-	rpiTemperature(true)
+	rpiTemperature(true, options.tempTopic)
 	log()
 })
 
