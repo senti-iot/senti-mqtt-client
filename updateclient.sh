@@ -24,3 +24,5 @@ if [ $retval -ne 0 ]; then
     echo "Return code from npm install was not zero but $retval" >> .logged_update.txt
 	date >> .logged_update.txt
 fi
+
+touch index.js
