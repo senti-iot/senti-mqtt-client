@@ -6,6 +6,7 @@ const log = require('./utils/log')
 const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
 const npmInstall = require('./utils/npminstall')
+const rpiTemp = require('./utils/rpi-temp')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')
 
@@ -17,6 +18,7 @@ const topic = options.topic
 const status = topic + '/status'
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
+if (rpiTemp() !== null) console.log(rpiTemp())
 log()
 
 setInterval(() => {
