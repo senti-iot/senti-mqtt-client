@@ -31,7 +31,8 @@ setInterval(() => {
 	let payload = {
 		id: clientId,
 		status: 'online',
-		timestamp: dateTimeLog()
+		timestamp: Date.now(),
+		datetime: dateTimeLog()
 	}
 	client.publish(status, JSON.stringify(payload), { retain: false })
 }, (options.ping))
