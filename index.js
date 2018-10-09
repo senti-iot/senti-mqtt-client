@@ -22,7 +22,7 @@ console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 const rpiTemperature = async(log, topic) => {
 	let result = await rpiTemp()
 	if (topic) {
-		client.publish('senti/sensor/sentiwi/8020/temperature', result, { retain: false })
+		client.publish('senti/sensor/sentiwi/8020/temperature', result.toString(), { retain: false })
 	}
 	if (log) console.log(result)
 }
