@@ -18,7 +18,9 @@ const topic = options.topic
 const status = topic + '/status'
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
-if (rpiTemp() !== null) console.log(rpiTemp())
+const rpiTemperature = rpiTemp()
+// if (rpiTemp() !== null) console.log(rpiTemp())
+console.log(rpiTemperature)
 log()
 
 setInterval(() => {

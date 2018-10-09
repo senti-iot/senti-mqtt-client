@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn
 const isPi = require('./rpi-detect')
 
-const rpiTemp = () => {
+const dummy = () => {
 	if (isPi()) {
 		let tempOut
 		temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp'])
@@ -13,9 +13,9 @@ const rpiTemp = () => {
 }
 
 
-module.exports = rpiTemp
 
-function resolveAfter2Seconds() {
+
+function getRpiTemp() {
 	return new Promise(resolve => {
 		if (isPi()) {
 			let tempOut
@@ -24,14 +24,16 @@ function resolveAfter2Seconds() {
 				tempOut = (data / 1000)
 				resolve(tempOut)
 			})
-		}
+		} 
 	})
 }
 
-async function asyncCall() {
-	console.log('calling');
-	var result = await resolveAfter2Seconds()
+async function rpiTemp() {
+	// console.log('calling')
+	var result = await getRpiTemp()	
 	console.log(result)	
 }
 
-asyncCall()
+module.exports = rpiTemp
+
+rpiTemp()
