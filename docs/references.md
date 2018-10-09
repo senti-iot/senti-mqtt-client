@@ -17,8 +17,10 @@ https://github.com/Losant/mqtt-garage-opener-example
 https://github.com/kyle-alex-burke/mqtt-slack-chat
 
 ## MQTT CLI
-mqtt sub -h hive.senti.cloud -t sensor/status
-mqtt pub -h hive.senti.cloud -t sensor/test -m "Hello world"
+```sh
+mqtt sub -h hive.senti.cloud -t senti/sensor/sentiwi/8020/status
+mqtt pub -h hive.senti.cloud -t senti/sensor/sentiwi/8020/data -m "{ text: "Hello world" }"
+```
 
 ## React MQTT 
 https://github.com/lloydXmas/mqtt-react-weather
@@ -33,8 +35,10 @@ https://owntracks.org/booklet/guide/broker/
 # Process Management
 
 ## Nodemon
+```sh
 nodemon index.js --watch index.js
 nodemon (using the nodemon.json config file)
+```
 https://codeburst.io/dont-use-nodemon-there-are-better-ways-fc016b50b45e
 
 ## SystemD
@@ -44,9 +48,24 @@ https://superuser.com/questions/1171751/restart-systemd-service-automatically-wh
 https://hackernoon.com/making-node-js-service-always-alive-on-ubuntu-server-e20c9c0808e4 
 
 ## PM2
-Linux/Mac:	pm2 start ecosystem.config.js
-Pi:			pm2 start index.js --name "senti-mqtt-client" --watch "./index.js ./options.js ./utils/*"
-Pi:			pm2 start index.js --name "senti-mqtt-client"
+```sh
+Linux/Mac:	
+pm2 start ecosystem.config.js
+
+Pi:			
+pm2 start index.js --name "senti-mqtt-client" --watch "./index.js ./options.js ./utils/*"
+
+Pi:			
+pm2 start index.js --name "senti-mqtt-client"
+
+How to update PM2
+Install the latest pm2 version:
+
+sudo npm install pm2@latest -g
+Then update the in-memory PM2 :
+
+sudo pm2 update
+```
 
 ## RPI temperature & system info
 https://github.com/sebhildebrandt/systeminformation 
@@ -57,8 +76,14 @@ https://github.com/coopermaa/rpi-cpu-temperature
 
 Create a file called "temp.js" and insert below code:
 
+```js
 var spawn = require('child_process').spawn
 temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp'])
 temp.stdout.on('data', function(data) {
         console.log('Result: ' + data/1000 + ' degrees Celcius')
 })
+```
+
+## MQTT DB persist
+https://www.instructables.com/id/Store-Messages-From-Mosquitto-MQTT-Broker-Into-SQL/ 
+https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/ 
