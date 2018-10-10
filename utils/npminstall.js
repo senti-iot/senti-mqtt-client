@@ -2,7 +2,7 @@ const execFile = require('child_process').execFile
 // const options = require('../options')
 const log = require('./log')
 
-const runInstall = () => {
+const npmInstall = () => {
 const child=execFile('npm', ['install'], (error, stdout, stderr) => {
 	if (error) {
 		console.error('stderr', stderr)
@@ -13,4 +13,6 @@ const child=execFile('npm', ['install'], (error, stdout, stderr) => {
 })
 }
 
-module.exports = runInstall
+module.exports = npmInstall
+
+// https://stackoverflow.com/questions/15957529/can-i-install-a-npm-package-from-javascript-running-in-node-js
