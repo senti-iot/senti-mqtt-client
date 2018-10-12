@@ -89,3 +89,8 @@ https://www.instructables.com/id/Store-Messages-From-Mosquitto-MQTT-Broker-Into-
 https://iotbytes.wordpress.com/store-mqtt-data-from-sensors-into-sql-database/ 
 https://smart-factory.net/mqtt-elasticsearch-setup/ 
 https://github.com/clive-jevons/mqtt-elasticsearch-forwarding/tree/master/nodejs 
+
+## Encryption / Decryption
+https://gist.github.com/vlucas/2bd40f62d20c1d49237a109d491974eb 
+https://www.npmjs.com/package/crypto-js 
+https://www.npmjs.com/package/simple-crypto-js 

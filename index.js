@@ -9,6 +9,9 @@ const npmInstall = require('./utils/npminstall')
 const rpiTemp = require('./utils/rpi-temp')
 var exec = require('child_process').exec
 var mqtt = require('mqtt')
+var mqttalk = require('mqttalk')
+const pub = mqttalk.pub
+const sub = mqttalk.sub
 
 const channel = options.slackChannel
 const slackOn = false
@@ -33,13 +36,15 @@ setInterval(() => {
 		status: 'online',
 		timestamp: Date.now(),
 		datetime: dateTimeLog()
-	}
-	client.publish(status, JSON.stringify(payload), { retain: false })
+	}	
+	// client.publish(status, JSON.stringify(payload), { retain: false })
+	pub(client, status, 'online', 'default', false)
 }, (options.ping))
 
 
 const updateClient = () => {
-	client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
+	pub(client, status, clientId + ' offline ' + dateTimeLog(), 'default', false)
+	// client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
 	client.publish(status, clientId + ' updating ' + dateTimeLog(), { retain: false })
 	console.log(clientId + ': updating ...', dateTimeLog())
 	log()
@@ -61,19 +66,29 @@ var client = mqtt.connect(options.host, {
 	will: options.will
 })
 
-client.on('connect', function () {
-	client.subscribe(status, function (error) {
-		if (!error) {		
+client.on('connect', () => {
+	sub(client, status, null, (error) => {
+		if (!error) {
+			sub(client, 'sensor/update')
+			console.log('subscribing to', status)
+			
+			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
+		}
+	})
+	
+/* 	client.subscribe(status, (error) => {
+		if (!error) {
 			client.subscribe('sensor/update')			
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 		}
 	})
+ */	
 	console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
 	rpiTemperature(true, options.tempTopic)
 	log()
 })
 
-client.on('message', function (topic, message) {
+client.on('message', (topic, message) => {
 	let topicStr = topic.toString()
 	let msgStr = message.toString()
 

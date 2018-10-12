@@ -2,19 +2,13 @@
 
 ## Todo (tasks):
 - Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
-- Switch statement to control message actions 
-- On message = "reboot" on topic /sensor/update
 - Get keepalive, ping and topic info from API
 - Get MQTT username + password from API (SSL)
-- JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
-- JSON decode payload
-- JSON check if valid JSON (parsed)
 - API to set client in verbose logging mode (on/off)
 - MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
-- Topic to update specific client 
 - Move Slack to dispatcher
 - Winston logger
-- RPI CPU temp and power consumption 
+- RPI power consumption 
 - Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
 - Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
 - Mysql -> Elsaticsearch
@@ -40,6 +34,13 @@
 - Split keepAlive into keepAlive + ping
 - Local configuration and device ID from local file
 - Communicate internally to own ID topics - e.g. 
+- Switch statement to control message actions 
+- On message = "reboot" on topic /sensor/update
 - Thin client - remove foreign topic chatter
 - Topic structure design
 - Topic structure implemented
+- Topic to update specific client 
+- RPI temperature
+- JSON decode payload
+- JSON check if valid JSON (parsed)
+- JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
