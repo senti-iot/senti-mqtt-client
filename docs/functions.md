@@ -1,10 +1,12 @@
 # Senti-MQTT-Client functions
 
 ## Todo (tasks):
+- API: Get keepalive, ping and topic info from API
+- API: Get MQTT username + password from API (SSL)
+- API: API to set client in verbose logging mode (on/off)
+- API: Client versioning so dead clients can connect to API and check if they have the latest version. If not -> updateclient
+- API: Download/create .env file with secrets
 - Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
-- Get keepalive, ping and topic info from API
-- Get MQTT username + password from API (SSL)
-- API to set client in verbose logging mode (on/off)
 - MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
 - Move Slack to dispatcher
 - Winston logger
@@ -12,8 +14,7 @@
 - Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
 - Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
 - Mysql -> Elsaticsearch
-- Client versioning so dead clients can connect to API and check if they have the latest version. If not -> updateclient
-- Download/create .env file with secrets
+- FIX: Create logs dir on initial run (doesn't work)- 
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -46,3 +47,4 @@
 - JSON decode payload
 - JSON check if valid JSON (parsed)
 - JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
+- React Native App demo to test MQTT connection (https://github.com/senti-platform/senti-monitor)

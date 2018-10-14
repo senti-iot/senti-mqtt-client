@@ -1,5 +1,6 @@
 #!/usr/bin/env /usr/local/bin/node
 
+const init = require('./utils/init')
 const options = require('./options')
 const dateTimeLog = require('./utils/datetimelog')
 const log = require('./utils/log')
@@ -19,6 +20,8 @@ const slackOn = false
 const clientId = options.clientId
 const topic = options.topic
 const status = topic + '/status'
+
+init()
 
 console.log('STARTING SENTI MQTT CLIENT SERVICES ...')
 
@@ -71,7 +74,7 @@ client.on('connect', () => {
 		if (!error) {
 			sub(client, 'sensor/update')
 			console.log('subscribing to', status)
-			
+			log()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 		}
 	})
