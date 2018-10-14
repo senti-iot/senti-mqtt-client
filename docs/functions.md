@@ -12,6 +12,8 @@
 - Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
 - Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
 - Mysql -> Elsaticsearch
+- Client versioning so dead clients can connect to API and check if they have the latest version. If not -> updateclient
+- Download/create .env file with secrets
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -30,7 +32,7 @@
 - React client (simple create-react-app) to subscribe to senti client and update state with status
 - Create localhost dir and ini for tests - /srv/senti/etc/infoAgent.ini
 - Read /srv/senti/etc/infoAgent.ini for clientId (deviceId)
-- Added .env for further use
+- Added .env for temporary access to secrets
 - Split keepAlive into keepAlive + ping
 - Local configuration and device ID from local file
 - Communicate internally to own ID topics - e.g. 

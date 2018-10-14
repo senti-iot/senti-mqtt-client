@@ -94,3 +94,8 @@ https://github.com/clive-jevons/mqtt-elasticsearch-forwarding/tree/master/nodejs
 https://gist.github.com/vlucas/2bd40f62d20c1d49237a109d491974eb 
 https://www.npmjs.com/package/crypto-js 
 https://www.npmjs.com/package/simple-crypto-js 
+
+## React Native MQTT
+https://www.npmjs.com/package/react_native_mqtt (177 weekly downloads)
+http://appiconmaker.co/ 
+https://www.hivemq.com/blog/mqtt-client-library-encyclopedia-paho-js 
