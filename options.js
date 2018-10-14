@@ -40,7 +40,7 @@ const options = {
 	clean: false, // false for persistent sessions
 	will: {
 		topic: _topic + '/status',
-		payload: JSON.stringify({ status: 'offline(dead)' }), 
+		payload: JSON.stringify({ status: 'offline (dead)' }), 
 		qos: 1,
 		retain: true
 	},
