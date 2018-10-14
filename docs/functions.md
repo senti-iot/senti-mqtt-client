@@ -33,10 +33,10 @@ wget -O - https://services.senti.cloud/setup.sh > setup.sh
 - Download assets (wget + unpack)
 - Copy to destinations
 - git pull
-- npm install
+- npm install (npm --prefix ../senti-mqtt-client ../senti-mqtt-client)
 - 
 
-#### Client Update App structure ("Senti Watchman")
+#### "Senti Watchman" - Client Update App structure 
 - PATH: /srv/nodejs/senti/senti-watchman
 - init 
 	- Get options/env from API
@@ -46,7 +46,7 @@ wget -O - https://services.senti.cloud/setup.sh > setup.sh
 	- Check for updates -> do update client
 	- On receive update -> do update client - set client update flag
 
-#### MQTT Client App structure ("Senti MQTT Client")
+#### "Senti MQTT Client" - MQTT Client App structure
 - PATH: - PATH: /srv/nodejs/senti/senti-mqtt-client
 - init 
 	- Get options/env
