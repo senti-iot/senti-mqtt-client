@@ -1,20 +1,59 @@
 # Senti-MQTT-Client functions
 
 ## Todo (tasks):
+
+### API:
+
 - API: Get keepalive, ping and topic info from API
 - API: Get MQTT username + password from API (SSL)
 - API: API to set client in verbose logging mode (on/off)
 - API: Client versioning so dead clients can connect to API and check if they have the latest version. If not -> updateclient
 - API: Download/create .env file with secrets
-- Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
+- API: Authentication/security of webhook (https://github.com/senti-platform/senti-service-dispatch)
+
+### Misc:
 - MQTT topic to execute CLI commands instantly (return result to REST interface or server topic)
 - Move Slack to dispatcher
-- Winston logger
+- Logging (new) pinojs/pino / winston
+- Logging to SQL / Elasticsearch
 - RPI power consumption 
 - Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
 - Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
 - Mysql -> Elsaticsearch
-- FIX: Create logs dir on initial run (doesn't work)- 
+- FIX: Create logs dir on initial run (doesn't work - not logging)
+- Options: Restructure into MQTTOptions object and other options
+
+### App structure (new):
+
+#### Setup Client (Watchman + MQTT Client)
+wget -O - https://services.senti.cloud/secret-route.sh | bash
+wget -O - https://services.senti.cloud/setup.sh > setup.sh
+
+- Create paths
+- Download assets (wget + unpack)
+- Copy to destinations
+- git pull
+- npm install
+- 
+
+#### Client Update App structure ("Senti Watchman")
+- PATH: /srv/nodejs/senti/senti-watchman
+- init 
+	- Get options/env from API
+	- Check for updates (self) -> do update self
+- Connect
+- Run
+	- Check for updates -> do update client
+	- On receive update -> do update client - set client update flag
+
+#### MQTT Client App structure ("Senti MQTT Client")
+- PATH: - PATH: /srv/nodejs/senti/senti-mqtt-client
+- init 
+	- Get options/env
+	- Check for updates
+- Connect
+- Run
+
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -48,3 +87,4 @@
 - JSON check if valid JSON (parsed)
 - JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
 - React Native App demo to test MQTT connection (https://github.com/senti-platform/senti-monitor)
+- SSL on dispatcher
