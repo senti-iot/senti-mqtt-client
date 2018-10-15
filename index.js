@@ -2,8 +2,8 @@
 
 const init = require('./utils/init')
 const options = require('./options')
-const dateTimeLog = require('./utils/datetimelog')
-const log = require('./utils/log')
+const dateTimeLogger = require('./utils/datetimelogger')
+// const log = require('./utils/log')
 const postToSlack = require('./utils/slack')
 const gitUpdate = require('./utils/gitupdate')
 const npmInstall = require('./utils/npminstall')
@@ -38,7 +38,7 @@ setInterval(() => {
 		id: clientId,
 		status: 'online',
 		timestamp: Date.now(),
-		datetime: dateTimeLog()
+		datetime: dateTimeLogger()
 	}	
 	// client.publish(status, JSON.stringify(payload), { retain: false })
 	pub(client, status, 'online', 'default', false)
@@ -46,21 +46,21 @@ setInterval(() => {
 
 
 const updateClient = () => {
-	pub(client, status, clientId + ' offline ' + dateTimeLog(), 'default', false)
-	// client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
-	client.publish(status, clientId + ' updating ' + dateTimeLog(), { retain: false })
-	console.log(clientId + ': updating ...', dateTimeLog())
-	log()
+	pub(client, status, clientId + ' offline ' + dateTimeLogger(), 'default', false)
+	// client.publish(status, clientId + ' offline ' + dateTimeLogger(), { retain: false })
+	client.publish(status, clientId + ' updating ' + dateTimeLogger(), { retain: false })
+	console.log(clientId + ': updating ...', dateTimeLogger())
+	// log()
 	gitUpdate()
 	npmInstall()
 	exec('bash updateclient.sh', function (error, stdout, stderr) {
 		if (error) {
 			console.log(error.code)
-			log()
+			// log()
 		}
 	})
 	console.log('UPDATE COMPLETED!')
-	log()
+	// log()
 }
 
 var client = mqtt.connect(options.host, {
@@ -73,8 +73,8 @@ client.on('connect', () => {
 	sub(client, status, null, (error) => {
 		if (!error) {
 			sub(client, 'sensor/update')
-			console.log('subscribing to', status)
-			log()
+			console.log('Subscribing to:', status)
+			// log()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 		}
 	})
@@ -88,7 +88,7 @@ client.on('connect', () => {
  */	
 	console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
 	rpiTemperature(true, options.tempTopic)
-	log()
+	// log()
 })
 
 client.on('message', (topic, message) => {
@@ -100,18 +100,18 @@ client.on('message', (topic, message) => {
 	switch (topicStr) {
 		case 'sensor/update': if (msgStr === 'now') {
 			console.log('CLIENT UPDATE')
-			log()
+			// log()
 			updateClient()
 		} 
 		case 'sensor/update': if (msgStr === 'restart') {
 			console.log('RESTART')
-			log()
+			// log()
 			process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts nodemon
 		} 
 		case 'sensor/update': if (msgStr === 'reboot') {
 			// shutdown -r
 			console.log('REBOOT')
-			log()
+			// log()
 		}
 		case 'sensor/update': if (msgStr === 'clear') {
 			process.stdout.write('\x1Bc')
@@ -123,30 +123,30 @@ client.on('message', (topic, message) => {
 })
 
 client.on('offline', function () {	
-	client.publish(status, clientId + ' offline ' + dateTimeLog(), { retain: false })
-	console.log('Offline ...', dateTimeLog())
-	log()
+	client.publish(status, clientId + ' offline ' + dateTimeLogger(), { retain: false })
+	console.log('Offline ...', dateTimeLogger())
+	// log()
 })
 
 client.on("error", function (error) {
-	console.log("ERROR: ", error, dateTimeLog())
-	log()
+	console.log("ERROR: ", error, dateTimeLogger())
+	// log()
 })
 
 client.on('reconnect', function () {
-	client.publish(status, clientId + ' online ' + dateTimeLog(), { retain: false })
-	console.log("Reconnected ...", dateTimeLog())
-	log()
+	client.publish(status, clientId + ' online ' + dateTimeLogger(), { retain: false })
+	console.log("Reconnected ...", dateTimeLogger())
+	// log()
 })
 
 client.on('disconnect', function () {
-	console.log("Disconnected ...", dateTimeLog())
-	log()
+	console.log("Disconnected ...", dateTimeLogger())
+	// log()
 })
 
 client.on('close', function () {	
-	console.log('Closing ...', dateTimeLog())
-	log()
+	console.log('Closing ...', dateTimeLogger())
+	// log()
 })
 
 client.on('packetreceive', function (packet) {

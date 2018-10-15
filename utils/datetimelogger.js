@@ -3,8 +3,8 @@ var moment = require('moment')
 
 moment.locale(options.logLocale)
 
-const dateTimeLog = () => {
+const dateTimeLogger = () => {
 	return moment().format('L - HH:mm:ss')
 }
 
-module.exports = dateTimeLog
+module.exports = dateTimeLogger
