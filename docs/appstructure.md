@@ -23,6 +23,7 @@ git clone https://github.com/senti-platform/setup-client.git && cd setup-client 
 - Start systemd services
 
 ## "Senti Watchman" - (Client Update App structure)
+- Description: Senti Watchman is a sentinel that monitors the senti-mqtt-client and update/restart the client when needed
 - PATH: /srv/nodejs/senti/senti-watchman
 - init 
 	- Get options/env/version from API
@@ -40,3 +41,5 @@ git clone https://github.com/senti-platform/setup-client.git && cd setup-client 
 	- Check for updates -> reverse client update flag
 - Connect
 - Run
+	- Set ping rate from options
+	- Listen to new ping rate
