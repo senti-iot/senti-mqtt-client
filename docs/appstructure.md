@@ -19,20 +19,22 @@ git clone https://github.com/senti-platform/setup-client.git && cd setup-client 
 - Copy to destinations
 - git pull
 - npm install (npm --prefix ../senti-mqtt-client ../senti-mqtt-client)
-- 
+- Add systemd entries
+- Start systemd services
 
-## "Senti Watchman" - Client Update App structure 
+## "Senti Watchman" - (Client Update App structure)
 - PATH: /srv/nodejs/senti/senti-watchman
 - init 
-	- Get options/env from API
-	- Check for updates (self) -> do update self
+	- Get options/env/version from API
+	- Check for updates - get version (self) -> do update self
 - Connect
 - Run
-	- Check for updates -> do update client
-	- On receive update -> do update client - set client update flag
+	- First run: Initial check for client updates -> do update client
+	- On MQTT receive update - check version -> do update client - set client update flag
+	- Restart systemd "senti-mqtt-client" service
 
-## "Senti MQTT Client" - MQTT Client App structure
-- PATH: - PATH: /srv/nodejs/senti/senti-mqtt-client
+## "Senti MQTT Client" - (MQTT Client App structure)
+- PATH: /srv/nodejs/senti/senti-mqtt-client
 - init 
 	- Get options/env
 	- Check for updates -> reverse client update flag
