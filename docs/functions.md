@@ -19,7 +19,7 @@
 - RPI power consumption 
 - Update count (from dispatcher holding account of updates pushed - timestamp, uuid, count)
 - Persist messages in DB (mysql) - Topic = '#' //subscribe to all topics
-- Mysql -> Elsaticsearch
+- Mysql -> Elasticsearch
 - FIX: Create logs dir on initial run (doesn't work - not logging)
 - Options: Restructure into MQTTOptions object and other options
 - Uninstall script (uninstall.sh) - removes /srv/nodejs/senti... and removes systemd entries
