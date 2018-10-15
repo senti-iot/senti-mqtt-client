@@ -1,12 +1,18 @@
 const git = require('simple-git') // (workingDirPath)
-const options = require('../options')
+const path = '../'
 const log = require('./log')
 
 const gitUpdate = () => {
-	// Pulls all updates from the default tracked repo
-	git().pull()
-	console.log('git pull')
-	log()
+	git().cwd(path)
+	git(path).pull((error) => {
+		if (error) {
+			console.log('ERROR!!!')
+			log()
+		} else {
+			console.log('git pull success')
+			log()
+		}
+	})
 }
 
 module.exports = gitUpdate
