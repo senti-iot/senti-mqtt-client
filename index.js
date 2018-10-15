@@ -1,5 +1,5 @@
 #!/usr/bin/env /usr/local/bin/node
-
+// console.log = () => {}  //Uncomment for production
 const init = require('./utils/init')
 const options = require('./options')
 const dateTimeLogger = require('./utils/datetimelogger')

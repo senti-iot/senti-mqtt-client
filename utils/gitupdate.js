@@ -5,7 +5,7 @@ const gitUpdate = () => {
 	// git().cwd(path)
 	git(path).pull((error) => {
 		if (error) {
-			console.log('ERROR!!!')
+			console.log('Error during git pull')
 		} else {
 			console.log('git pull success')
 		}
@@ -13,3 +13,5 @@ const gitUpdate = () => {
 }
 
 module.exports = gitUpdate
+
+// https://www.npmjs.com/package/simple-git

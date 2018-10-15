@@ -74,7 +74,11 @@ https://github.com/bojkovak/rpi-temperature
 https://github.com/odensc/pi-temperature
 https://github.com/coopermaa/rpi-cpu-temperature
 
-Create a file called "temp.js" and insert below code:
+```sh
+mqtt sub -h hive.senti.cloud -t senti/sensor/sentiwi/8020/temperature
+```
+
+**Example code:**
 
 ```js
 var spawn = require('child_process').spawn

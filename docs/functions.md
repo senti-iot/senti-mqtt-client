@@ -22,38 +22,7 @@
 - Mysql -> Elsaticsearch
 - FIX: Create logs dir on initial run (doesn't work - not logging)
 - Options: Restructure into MQTTOptions object and other options
-
-### App structure (new):
-
-#### Setup Client (Watchman + MQTT Client)
-wget -O - https://services.senti.cloud/secret-route.sh | bash
-wget -O - https://services.senti.cloud/setup.sh > setup.sh
-
-- Create paths
-- Download assets (wget + unpack)
-- Copy to destinations
-- git pull
-- npm install (npm --prefix ../senti-mqtt-client ../senti-mqtt-client)
-- 
-
-#### "Senti Watchman" - Client Update App structure 
-- PATH: /srv/nodejs/senti/senti-watchman
-- init 
-	- Get options/env from API
-	- Check for updates (self) -> do update self
-- Connect
-- Run
-	- Check for updates -> do update client
-	- On receive update -> do update client - set client update flag
-
-#### "Senti MQTT Client" - MQTT Client App structure
-- PATH: - PATH: /srv/nodejs/senti/senti-mqtt-client
-- init 
-	- Get options/env
-	- Check for updates
-- Connect
-- Run
-
+- Uninstall script (uninstall.sh) - removes /srv/nodejs/senti... and removes systemd entries
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -88,3 +57,41 @@ wget -O - https://services.senti.cloud/setup.sh > setup.sh
 - JSON schema with primary payload and meta data (payload, timestamp, messageId (uuid), clientId)
 - React Native App demo to test MQTT connection (https://github.com/senti-platform/senti-monitor)
 - SSL on dispatcher
+
+
+### App structure (new):
+
+#### Setup Client (Watchman + MQTT Client)
+```sh
+wget -O - https://services.senti.cloud/secret-route.sh | bash
+wget -O - https://services.senti.cloud/setup > setup.sh
+```
+Or
+```sh
+git clone https://github.com/senti-platform/setup-client.git && cd setup-client && bash setup.sh
+```
+
+- Create paths
+- Download assets (wget + unpack)
+- Copy to destinations
+- git pull
+- npm install (npm --prefix ../senti-mqtt-client ../senti-mqtt-client)
+- 
+
+#### "Senti Watchman" - Client Update App structure 
+- PATH: /srv/nodejs/senti/senti-watchman
+- init 
+	- Get options/env from API
+	- Check for updates (self) -> do update self
+- Connect
+- Run
+	- Check for updates -> do update client
+	- On receive update -> do update client - set client update flag
+
+#### "Senti MQTT Client" - MQTT Client App structure
+- PATH: - PATH: /srv/nodejs/senti/senti-mqtt-client
+- init 
+	- Get options/env
+	- Check for updates -> reverse client update flag
+- Connect
+- Run
