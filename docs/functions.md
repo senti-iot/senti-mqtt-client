@@ -23,6 +23,7 @@
 - FIX: Create logs dir on initial run (doesn't work - not logging)
 - Options: Restructure into MQTTOptions object and other options
 - Uninstall script (uninstall.sh) - removes /srv/nodejs/senti... and removes systemd entries
+- Remove PM2 from systemd on 8020
 
 ## Done:
 - On message = "now" on topic /sensor/update
@@ -63,14 +64,17 @@
 
 #### Setup Client (Watchman + MQTT Client)
 ```sh
+sudo -i
 wget -O - https://services.senti.cloud/secret-route.sh | bash
 wget -O - https://services.senti.cloud/setup > setup.sh
 ```
 Or
 ```sh
+sudo -i
 git clone https://github.com/senti-platform/setup-client.git && cd setup-client && bash setup.sh
 ```
 
+- Install all needed helper software
 - Create paths
 - Download assets (wget + unpack)
 - Copy to destinations
