@@ -103,3 +103,9 @@ https://www.npmjs.com/package/simple-crypto-js
 https://www.npmjs.com/package/react_native_mqtt (177 weekly downloads)
 http://appiconmaker.co/ 
 https://www.hivemq.com/blog/mqtt-client-library-encyclopedia-paho-js 
+
+## Express API security
+https://expressjs.com/en/advanced/best-practice-security.html
+https://www.npmjs.com/package/jsonwebtoken
+https://dev.to/medaymentn/securing-your-node-js-api-with-json-web-token-5o5
+https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
