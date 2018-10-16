@@ -24,6 +24,7 @@
 - Options: Restructure into MQTTOptions object and other options
 - Uninstall script (uninstall.sh) - removes /srv/nodejs/senti... and removes systemd entries
 - Remove PM2 from systemd on 8020
+- Add short URL to senti-client-setup on senti.cloud/setup
 
 ## Done:
 - On message = "now" on topic /sensor/update

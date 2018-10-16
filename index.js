@@ -104,12 +104,12 @@ client.on('message', (topic, message) => {
 			updateClient()
 		} 
 		case 'sensor/update': if (msgStr === 'restart') {
-			console.log('RESTART')
+			console.log('RESTART')			
 			// log()
 			process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts nodemon
 		} 
 		case 'sensor/update': if (msgStr === 'reboot') {
-			// shutdown -r
+			// sudo shutdown -r 
 			console.log('REBOOT')
 			// log()
 		}

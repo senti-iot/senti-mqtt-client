@@ -1,0 +1,8 @@
+[Unit]
+Description=Senti MQTT Client is a service that loads and run/restart the senti-mqtt-client
+Documentation=https://github.com/senti-platform/senti-mqtt-client/blob/master/README.md
+
+[Service]
+WorkingDirectory=/srv/nodejs/senti/senti-mqtt-client
+ExecStart=/usr/local/bin/node index.js
+Type=simple

@@ -6,11 +6,12 @@ Download setup script:
 sudo -i
 wget -O - https://services.senti.cloud/secret-route.sh | bash
 wget -O - https://services.senti.cloud/setup > setup.sh
+wget -O - https://github.com/senti-platform/senti-client-setup/blob/master/setup.sh | bash
 ```
 Or git clone setup repository:
 ```sh
 sudo -i
-git clone https://github.com/senti-platform/setup-client.git && cd setup-client && bash setup.sh
+git clone https://github.com/senti-platform/senti-client-setup.git && cd setup-client-setup && bash setup.sh
 ```
 
 - Install all needed helper software

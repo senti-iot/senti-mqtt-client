@@ -1,8 +1,19 @@
 #!/bin/bash
-#chmod 700 setup.sh
-# wget https://raw.githubusercontent.com/senti-platform/senti-mqtt-client/master/setup.sh && bash setup.sh
+#chmod +x setup.sh
+# wget https://raw.githubusercontent.com/senti-platform/senti-client-setup/master/setup.sh && bash setup.sh
 
 # Log in and sudo -i
+
+#- Install all needed helper software
+#- Create paths
+#- Download assets (wget + unpack)
+#- Copy to destinations
+#- git pull
+#- npm install (npm --prefix ../senti-mqtt-client ../senti-mqtt-client)
+#- Add systemd entries
+#- Start systemd services
+
+
 
 clear
 
