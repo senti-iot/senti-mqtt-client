@@ -76,6 +76,10 @@ client.on('connect', () => {
 			console.log('Subscribing to:', status)
 			// log()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
+		} else {
+			// We have an error
+			console.log(error)
+			
 		}
 	})
 	
@@ -128,7 +132,7 @@ client.on('offline', function () {
 	// log()
 })
 
-client.on("error", function (error) {
+client.on('error', function (error) {
 	console.log("ERROR: ", error, dateTimeLogger())
 	// log()
 })
