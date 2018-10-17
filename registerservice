@@ -1,0 +1,32 @@
+#!/bin/bash
+
+clear
+sudo -i
+clear
+
+service_name=senti-mqtt-client.service
+service_dir=/etc/systemd/system
+server_dir=/srv/nodejs/senti/senti-mqtt-client
+
+service=$service_dir/$service_name
+
+echo Registering MQTT Client service ...
+
+if [ ! -e "$service" ]; then
+	echo
+    echo "MQTT Client service is not installed"
+	echo "Installing MQTT Client service ..."
+	sudo cp $server_dir/$service_name $service_dir/$service_name
+	echo "Enabling $service_name ..."
+	sudo systemctl enable $service_name
+	sudo systemctl daemon-reload
+	echo "Starting $service_name ..."
+	sudo systemctl start $service_name
+else 
+    echo "MQTT Client service is already installed"
+	echo "Enabling $service_name ..."
+	sudo systemctl enable $service_name
+	sudo systemctl daemon-reload
+	echo "Starting $service_name ..."
+	sudo systemctl start $service_name
+fi 
