@@ -27,7 +27,7 @@ const getClientId = () => {
 
 const _clientId = getClientId()
 const _topic = 'senti/sensor/' + sensorType() + '/' + _clientId
-// _topic = senti/sensor/type/clientid
+// _topic = senti/sensor/sensortype/clientid
 // _topic = senti/sensor/darwin/cb-air
 
 const options = {
