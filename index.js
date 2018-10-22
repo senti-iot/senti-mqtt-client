@@ -72,7 +72,7 @@ var client = mqtt.connect(options.host, {
 client.on('connect', () => {
 	sub(client, status, null, (error) => {
 		if (!error) {
-			sub(client, 'sensor/update')
+			sub(client, 'senti/services/mqttclient/update')
 			console.log('Subscribing to:', status)
 			// log()
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
@@ -85,7 +85,7 @@ client.on('connect', () => {
 	
 /* 	client.subscribe(status, (error) => {
 		if (!error) {
-			client.subscribe('sensor/update')			
+			client.subscribe('senti/services/mqttclient/update')			
 			if (slackOn) postToSlack(channel, `{"text":"${clientId}: connected"}`)
 		}
 	})
@@ -102,22 +102,22 @@ client.on('message', (topic, message) => {
 	if (slackOn) postToSlack(channel, `{"text":"${message.toString()}"}`)
 	
 	switch (topicStr) {
-		case 'sensor/update': if (msgStr === 'now') {
+		case 'senti/services/mqttclient/update': if (msgStr === 'now') {
 			console.log('CLIENT UPDATE')
 			// log()
 			updateClient()
 		} 
-		case 'sensor/update': if (msgStr === 'restart') {
+		case 'senti/services/mqttclient/update': if (msgStr === 'restart') {
 			console.log('RESTART')			
 			// log()
 			process.kill(process.pid, 'SIGUSR2') // DANGER - Kills nodemon service and restarts nodemon
 		} 
-		case 'sensor/update': if (msgStr === 'reboot') {
+		case 'senti/services/mqttclient/update': if (msgStr === 'reboot') {
 			// sudo shutdown -r 
 			console.log('REBOOT')
 			// log()
 		}
-		case 'sensor/update': if (msgStr === 'clear') {
+		case 'senti/services/mqttclient/update': if (msgStr === 'clear') {
 			process.stdout.write('\x1Bc')
 			console.log('SENTI MQTT CLIENT SERVICES STARTED! (' + topic + ')')
 		}
