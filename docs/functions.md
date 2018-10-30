@@ -4,7 +4,6 @@
 
 ### API:
 
-- API: Get keepalive, ping and topic info from API
 - API: Get MQTT username + password from API (SSL)
 - API: API to set client in verbose logging mode (on/off)
 - API: Client versioning so dead clients can connect to API and check if they have the latest version. If not -> updateclient
@@ -24,9 +23,10 @@
 - Options: Restructure into MQTTOptions object and other options
 - Uninstall script (uninstall.sh) - removes /srv/nodejs/senti... and removes systemd entries
 - Remove PM2 from systemd on 8020
-- Add short URL to senti-client-setup on senti.cloud/setup
 
 ## Done:
+- Add short URL to senti-client-setup on senti.cloud/setup
+- API: Get keepalive, ping and topic info from API
 - On message = "now" on topic /sensor/update
 - NodeJS execute bash command
 - Remotely update the client from GitHub and restart
