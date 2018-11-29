@@ -1,6 +1,6 @@
 {
   "name": "senti-mqtt-client",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Senti.Cloud MQTT client for Senti-in-a-Box devices",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,11 @@
     "mqtt-client",
     "senti-in-a-box"
   ],
-  "author": "Christian Broberg",
+  "author": {
+	"name": "Christian Broberg",
+	"email": "apisupport@senti.cloud",
+	"url": "https://senti.cloud/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/senti-platform/senti-mqtt-client/issues"
