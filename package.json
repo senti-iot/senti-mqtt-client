@@ -21,9 +21,9 @@
     "senti-in-a-box"
   ],
   "author": {
-	"name": "Christian Broberg",
-	"email": "apisupport@senti.cloud",
-	"url": "https://senti.cloud/"
+    "name": "Christian Broberg",
+    "email": "apisupport@senti.cloud",
+    "url": "https://senti.cloud/"
   },
   "license": "MIT",
   "bugs": {
